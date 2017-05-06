@@ -16,6 +16,7 @@
     "Router.js",
     "StaticRouter.js",
     "Switch.js",
+    "compile.js",
     "index.js",
     "matchPath.js",
     "withRouter.js",
@@ -26,7 +27,7 @@
   "module": "es/index.js",
   "scripts": {
     "build": "node ./tools/build.js",
-    "watch": "babel ./modules -d . --ignore __tests__ --watch",
+    "watch": "node_modules/.bin/babel ./modules -d . --ignore __tests__ --watch",
     "prepublish": "node ./tools/build.js",
     "clean": "git clean -fdX .",
     "lint": "eslint modules",

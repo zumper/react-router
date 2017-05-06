@@ -28,6 +28,20 @@ The UMD build is also available on [unpkg](https://unpkg.com):
 
 You can find the library on `window.ReactRouter`.
 
+## Bundling this module independently
+as a requirement of another project.
+
+    $ node tools/build.js
+    $ tar cvzf /tmp/react-router-v4.1.2-beta.tgz --exclude node_modules --exclude __tests__ --exclude docs --exclude '.DS_Store' .
+    $ curl ... (or your uploader of choice)
+
+then in your proj/project.json
+```json
+..
+  "react-router": "https://your-cdn-repo/your-path-to-forks/react-router-v4.1.2-beta.tgz"
+..
+```
+
 ## Issues
 
 If you find a bug, please file an issue on [our issue tracker on GitHub](https://github.com/ReactTraining/react-router/issues).

@@ -31,7 +31,7 @@ const matchPath = (pathname, options = {}) => {
     options = { path: options }
 
   const { path = '/', exact = false, strict = false } = options
-  const { re, keys } = compilePath(path, { end: exact, strict })
+  const { re, keys = [] } = options.re ? options : compilePath(path, { end: exact, strict })
   const match = re.exec(pathname)
 
   if (!match)

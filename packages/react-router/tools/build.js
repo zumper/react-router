@@ -15,25 +15,25 @@ const exec = (command, extraEnv) =>
 
 console.log('Building CommonJS modules ...')
 
-exec('babel modules -d . --ignore __tests__', {
+exec('node_modules/.bin/babel modules -d . --ignore __tests__', {
   BABEL_ENV: 'cjs'
 })
 
 console.log('\nBuilding ES modules ...')
 
-exec('babel modules -d es --ignore __tests__', {
+exec('node_modules/.bin/babel modules -d es --ignore __tests__', {
   BABEL_ENV: 'es'
 })
 
 console.log('\nBuilding react-router.js ...')
 
-exec('webpack modules/index.js umd/react-router.js', {
+exec('node_modules/.bin/webpack modules/index.js umd/react-router.js', {
   NODE_ENV: 'production'
 })
 
 console.log('\nBuilding react-router.min.js ...')
 
-exec('webpack -p modules/index.js umd/react-router.min.js', {
+exec('node_modules/.bin/webpack -p modules/index.js umd/react-router.min.js', {
   NODE_ENV: 'production'
 })
 

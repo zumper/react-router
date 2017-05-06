@@ -1,5 +1,6 @@
 import expect from 'expect'
 import matchPath from '../matchPath'
+import compile from '../compile'
 
 describe('matchPath', () => {
   describe('with path="/"', () => {
@@ -59,6 +60,31 @@ describe('matchPath', () => {
       )
       expect(!!trueFalse).toBe(true)
       expect(!!falseTrue).toBe(false)
+    })
+  })
+
+  describe('compile', () => {
+    const patterns = {
+      string: /[a-z]+/,
+      number: /\d+/,
+    }
+    const compiled = compile({ path: '/s-:string/n-:number', patterns, })
+    it('use compiled path to match', () => {
+      const match = matchPath('/s-abc/n-123', compiled)
+      expect(Object.keys(match.params)).toEqual(['string', 'number'])
+      expect(match.params['string']).toBe('abc')
+      expect(match.params['number']).toBe('123')
+    })
+    it('use compiled path, does not match b/c is case-sensitive', () => {
+      const match = matchPath('/s-ABC/n-123', compiled)
+      expect(match).toBe(null)
+    })
+    const compiledI = compile({ path: '/s-:string/n-:number', patterns, sensitive: false })
+    it('use compiled path to case-insensitive match', () => {
+      const match = matchPath('/s-ABC/n-123', compiledI)
+      expect(Object.keys(match.params)).toEqual(['string', 'number'])
+      expect(match.params['string']).toBe('ABC')
+      expect(match.params['number']).toBe('123')
     })
   })
 })
