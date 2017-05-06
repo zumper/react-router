@@ -51,7 +51,7 @@ class Route extends React.Component {
   };
 
   computeMatch(
-    { computedMatch, location, path, strict, exact, sensitive },
+    { computedMatch, location, path, strict, exact, sensitive, re, keys },
     router
   ) {
     if (computedMatch) return computedMatch; // <Switch> already computed the match for us
@@ -64,7 +64,11 @@ class Route extends React.Component {
     const { route } = router;
     const pathname = (location || route.location).pathname;
 
-    return matchPath(pathname, { path, strict, exact, sensitive }, route.match);
+    return matchPath(
+      pathname,
+      { path, strict, exact, sensitive, re, keys },
+      route.match
+    );
   }
 
   componentWillMount() {
