@@ -1,4 +1,3 @@
-import expect from "expect";
 import compile from "../compile";
 
 describe("compile", () => {
