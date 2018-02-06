@@ -31,19 +31,16 @@ The UMD build is also available on [unpkg](https://unpkg.com):
 You can find the library on `window.ReactRouter`.
 
 ## Bundling this module independently
+You can zip up a build of this package to use it as a requirement of another project. You would do this instead of publishing a private fork of this package.
 
-as a requirement of another project.
+```bash
+$ npm run zumper
+```
 
-    $ node tools/build.js
-    $ tar cvzf /tmp/react-router-v4.1.2-beta.tgz --exclude node_modules --exclude __tests__ --exclude docs --exclude '.DS_Store' .
-    $ curl ... (or your uploader of choice)
-
-then in your proj/project.json
+In your `package.json` you need to reference the prepackaged version of this package.
 
 ```json
-..
-  "react-router": "https://your-cdn-repo/your-path-to-forks/react-router-v4.1.2-beta.tgz"
-..
+"react-router": "https://your-cdn-repo/your-path-to-forks/react-router-v4.3.1.tgz"
 ```
 
 ## Issues

@@ -28,6 +28,19 @@ The UMD build is also available on [unpkg](https://unpkg.com):
 
 You can find the library on `window.ReactRouterDOM`.
 
+## Bundling this module independently
+You can zip up a build of this package to use it as a requirement of another project. You would do this instead of publishing a private fork of this package.
+
+```bash
+$ npm run zumper
+```
+
+In your `package.json` you need to reference the prepackaged version of this package.
+
+```json
+"react-router": "https://your-cdn-repo/your-path-to-forks/react-router-dom-v4.2.2.tgz"
+```
+
 ## Issues
 
 If you find a bug, please file an issue on [our issue tracker on GitHub](https://github.com/ReactTraining/react-router/issues).

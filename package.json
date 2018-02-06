@@ -7,7 +7,8 @@
     "clean": "lerna run clean",
     "precommit": "pretty-quick --staged",
     "start": "cd website && npm start",
-    "test": "lerna run test --stream"
+    "test": "lerna run test --stream",
+    "zumper": "cd packages/react-router && npm run zumper && cd ../../ && cd packages/react-router-dom && npm run zumper"
   },
   "devDependencies": {
     "husky": "^0.14.3",
