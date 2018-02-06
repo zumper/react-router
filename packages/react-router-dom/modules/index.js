@@ -9,6 +9,7 @@ export Route from "./Route";
 export Router from "./Router";
 export StaticRouter from "./StaticRouter";
 export Switch from "./Switch";
+export compile from './compile';
 export generatePath from "./generatePath";
 export matchPath from "./matchPath";
 export withRouter from "./withRouter";
