@@ -34,7 +34,7 @@
     "clean": "git clean -fdX .",
     "lint": "eslint modules",
     "test": "jest",
-    "zumper": "npm run build && tar cvzf ~/downloads/react-router-v4.2.0.tgz --exclude package-lock.json --exclude node_modules --exclude __tests__ --exclude docs --exclude '.DS_Store' ."
+    "zumper": "npm run build && tar cvzf ~/downloads/react-router-v4.3.1.tgz --exclude package-lock.json --exclude node_modules --exclude __tests__ --exclude docs --exclude '.DS_Store' ."
   },
   "peerDependencies": {
     "react": ">=15"
