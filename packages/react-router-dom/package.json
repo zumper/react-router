@@ -22,6 +22,7 @@
     "Switch.js",
     "es",
     "index.js",
+    "compile.js",
     "generatePath.js",
     "matchPath.js",
     "withRouter.js",
