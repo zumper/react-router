@@ -9,7 +9,7 @@ React Router v4 is a complete rewrite, so there is not a simple migration path. 
 * [The Router](#the-router)
 * [Routes](#routes)
   * [Nesting Routes](#nesting-routes)
-  * [on* properties](#on-properties)
+  * [on\* properties](#on-properties)
   * [Switch](#switch)
   * [Redirect](#redirect)
 * [PatternUtils](#patternutils)
@@ -41,8 +41,8 @@ In v4, there is no centralized route configuration. Anywhere that you need to re
 //v4
 <BrowserRouter>
   <div>
-    <Route path='/about' component={About} />
-    <Route path='/contact' component={Contact} />
+    <Route path="/about" component={About} />
+    <Route path="/contact" component={Contact} />
   </div>
 </BrowserRouter>
 ```
@@ -88,9 +88,9 @@ The v4 `<Route>` component is actually a component, so wherever you render a `<R
 In v3, `<Route>`s were nested by passing them as the `children` of their parent `<Route>`.
 
 ```jsx
-<Route path='parent' component={Parent}>
-  <Route path='child' component={Child} />
-  <Route path='other' component={Other} />
+<Route path="parent" component={Parent}>
+  <Route path="child" component={Child} />
+  <Route path="other" component={Other} />
 </Route>
 ```
 
@@ -105,14 +105,14 @@ When a nested `<Route>` matched, React elements would be created using both the 
 With v4, children `<Route>`s should just be rendered by the parent `<Route>`'s component.
 
 ```jsx
-<Route path='parent' component={Parent} />
+<Route path="parent" component={Parent} />;
 
 const Parent = () => (
   <div>
-    <Route path='child' component={Child} />
-    <Route path='other' component={Other} />
+    <Route path="child" component={Child} />
+    <Route path="other" component={Other} />
   </div>
-)
+);
 ```
 
 ### `on*` properties
@@ -127,10 +127,10 @@ In v3, you could specify a number of child routes, and only the first one that m
 
 ```jsx
 // v3
-<Route path='/' component={App}>
+<Route path="/" component={App}>
   <IndexRoute component={Home} />
-  <Route path='about' component={About} />
-  <Route path='contact' component={Contact} />
+  <Route path="about" component={About} />
+  <Route path="contact" component={Contact} />
 </Route>
 ```
 
@@ -140,12 +140,11 @@ v4 provides a similar functionality with the `<Switch>` component. When a `<Swit
 // v4
 const App = () => (
   <Switch>
-    <Route exact path='/' component={Home} />
-    <Route path='/about' component={About} />
-    <Route path='/contact' component={Contact} />
+    <Route exact path="/" component={Home} />
+    <Route path="/about" component={About} />
+    <Route path="/contact" component={Contact} />
   </Switch>
-)
-
+);
 ```
 
 ### `<Redirect>`
@@ -157,7 +156,6 @@ In v3, if you wanted to redirect from one path to another, for instance / to /we
 <Route path="/" component={App}>
   <IndexRedirect to="/welcome" />
 </Route>
-
 ```
 
 In v4, you can achieve the same functionality using `<Redirect>`.
@@ -171,7 +169,6 @@ In v4, you can achieve the same functionality using `<Redirect>`.
   <Route path="/login" component={Login} />
   <Redirect path="*" to="/" />
 </Switch>
-
 ```
 
 In v3, `<Redirect>` preserved the query string:
@@ -198,32 +195,35 @@ In v4, you must re-pass these properties to the `to` prop:
 ## PatternUtils
 
 ### matchPattern(pattern, pathname)
+
 In v3, you could use the same matching code used internally to check if a path matched a pattern. In v4 this has been replaced by [matchPath](/packages/react-router/docs/api/matchPath.md) which is powered by the [`path-to-regexp@^1.7.0`](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) library.
 
 ### formatPattern(pattern, params)
+
 In v3, you could use PatternUtils.formatPattern to generate a valid path from a path pattern (perhaps in a constant or in your central routing config) and an object containing the names parameters:
 
 ```jsx
 // v3
-const THING_PATH = '/thing/:id';
+const THING_PATH = "/thing/:id";
 
-<Link to={PatternUtils.formatPattern(THING_PATH, {id: 1})}>A thing</Link>
+<Link to={PatternUtils.formatPattern(THING_PATH, { id: 1 })}>A thing</Link>;
 ```
 
 In v4, you can achieve the same functionality using the [compile](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0#compile-reverse-path-to-regexp) function in [`path-to-regexp@^1.7.0`](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0).
 
 ```jsx
 // v4
-const THING_PATH = '/thing/:id';
+const THING_PATH = "/thing/:id";
 
 const thingPath = pathToRegexp.compile(THING_PATH);
 
-<Link to={thingPath({id: 1})}>A thing</Link>
+<Link to={thingPath({ id: 1 })}>A thing</Link>;
 ```
 
 ## Link
 
 ### `to` property is required
+
 In v3, you could omit `to` property or set it to null to create an anchor tag without `href` attribute.
 
 ```jsx
@@ -237,7 +237,7 @@ In v4, you should always provide `to`. In case you are rely on empty `to` you ca
 
 ```jsx
 // v4
-import { Link } from 'react-router-dom'
+import { Link } from '@zumper/react-router-dom'
 
 const LinkWrapper = (props) => {
   const Component = props.to ? Link : 'a'

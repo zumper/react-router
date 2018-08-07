@@ -3,7 +3,7 @@
 A [`<Router>`](../../../react-router/docs/api/Router.md) that uses the HTML5 history API (`pushState`, `replaceState` and the `popstate` event) to keep your UI in sync with the URL.
 
 ```jsx
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from '@zumper/react-router-dom'
 
 <BrowserRouter
   basename={optionalString}
@@ -52,7 +52,7 @@ const supportsHistory = 'pushState' in window.history
 The length of `location.key`. Defaults to 6.
 
 ```jsx
-<BrowserRouter keyLength={12}/>
+<BrowserRouter keyLength={12} />
 ```
 
 ## children: node

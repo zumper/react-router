@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "react-router-packages",
+  "name": "@zumper/react-router-packages",
   "scripts": {
     "postinstall": "node ./scripts/postinstall.js",
     "build": "node ./scripts/build.js",

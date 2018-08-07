@@ -4,7 +4,7 @@ Renders the first child [`<Route>`](Route.md) or [`<Redirect>`](Redirect.md) tha
 
 **How is this different than just using a bunch of `<Route>`s?**
 
-`<Switch>` is unique in that it renders a route *exclusively*. In contrast, every `<Route>` that matches the location renders *inclusively*. Consider this code:
+`<Switch>` is unique in that it renders a route _exclusively_. In contrast, every `<Route>` that matches the location renders _inclusively_. Consider this code:
 
 ```jsx
 <Route path="/about" component={About}/>
@@ -17,7 +17,7 @@ If the URL is `/about`, then `<About>`, `<User>`, and `<NoMatch>` will all rende
 Occasionally, however, we want to pick only one `<Route>` to render. If we're at `/about` we don't want to also match `/:user` (or show our "404" page). Here's how to do it with `Switch`:
 
 ```jsx
-import { Switch, Route } from 'react-router'
+import { Switch, Route } from '@zumper/react-router'
 
 <Switch>
   <Route exact path="/" component={Home}/>
@@ -65,11 +65,11 @@ If a `location` prop is given to the `<Switch>`, it will override the `location`
 
 ```jsx
 <Switch>
-  <Route exact path="/" component={Home}/>
+  <Route exact path="/" component={Home} />
 
-  <Route path="/users" component={Users}/>
-  <Redirect from="/accounts" to="/users"/>
+  <Route path="/users" component={Users} />
+  <Redirect from="/accounts" to="/users" />
 
-  <Route component={NoMatch}/>
+  <Route component={NoMatch} />
 </Switch>
 ```

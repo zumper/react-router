@@ -1,8 +1,8 @@
 {
-  "name": "react-router-dom",
-  "version": "4.3.1",
+  "name": "@zumper/react-router-dom",
+  "version": "4.3.1-zumper.0",
   "description": "DOM bindings for React Router",
-  "repository": "ReactTraining/react-router",
+  "repository": "zumper/react-router",
   "license": "MIT",
   "authors": [
     "Michael Jackson",
@@ -38,17 +38,17 @@
     "clean": "git clean -fdX .",
     "lint": "eslint modules",
     "test": "jest",
-    "zumper": "npm run build && tar cvzf ~/downloads/react-router-dom-v4.3.1.tgz --exclude package-lock.json --exclude node_modules --exclude __tests__ --exclude docs --exclude '.DS_Store' ."
+    "zumper": "npm run build && tar cvzf ~/downloads/zumper-react-router-dom-v$npm_package_version.tgz --exclude package-lock.json --exclude node_modules --exclude __tests__ --exclude docs --exclude '.DS_Store' ."
   },
   "peerDependencies": {
     "react": ">=15"
   },
   "dependencies": {
+    "@zumper/react-router": "^4.3.1-zumper.0",
     "history": "^4.7.2",
     "invariant": "^2.2.4",
     "loose-envify": "^1.3.1",
     "prop-types": "^15.6.1",
-    "react-router": "^4.3.1",
     "warning": "^4.0.1"
   },
   "devDependencies": {
@@ -96,5 +96,8 @@
     "routing",
     "history",
     "link"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -3,7 +3,7 @@
 A special version of the [`<Link>`](Link.md) that will add styling attributes to the rendered element when it matches the current URL.
 
 ```jsx
-import { NavLink } from 'react-router-dom'
+import { NavLink } from '@zumper/react-router-dom'
 
 <NavLink to="/about">About</NavLink>
 ```
@@ -13,10 +13,9 @@ import { NavLink } from 'react-router-dom'
 The class to give the element when it is active. The default given class is `active`. This will be joined with the `className` prop.
 
 ```jsx
-<NavLink
-  to="/faq"
-  activeClassName="selected"
->FAQs</NavLink>
+<NavLink to="/faq" activeClassName="selected">
+  FAQs
+</NavLink>
 ```
 
 ## activeStyle: object
@@ -27,10 +26,12 @@ The styles to apply to the element when it is active.
 <NavLink
   to="/faq"
   activeStyle={{
-    fontWeight: 'bold',
-    color: 'red'
-   }}
->FAQs</NavLink>
+    fontWeight: "bold",
+    color: "red"
+  }}
+>
+  FAQs
+</NavLink>
 ```
 
 ## exact: bool
@@ -38,10 +39,9 @@ The styles to apply to the element when it is active.
 When `true`, the active class/style will only be applied if the location is matched exactly.
 
 ```jsx
-<NavLink
-  exact
-  to="/profile"
->Profile</NavLink>
+<NavLink exact to="/profile">
+  Profile
+</NavLink>
 ```
 
 ## strict: bool
@@ -49,10 +49,9 @@ When `true`, the active class/style will only be applied if the location is matc
 When `true`, the trailing slash on a location's `pathname` will be taken into consideration when determining if the location matches the current URL. See the [`<Route strict>`](../../../react-router/docs/api/Route.md#strict-bool) documentation for more information.
 
 ```jsx
-<NavLink
-  strict
-  to="/events/"
->Events</NavLink>
+<NavLink strict to="/events/">
+  Events
+</NavLink>
 ```
 
 ## isActive: func

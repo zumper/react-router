@@ -1,8 +1,8 @@
 {
-  "name": "react-router",
-  "version": "4.3.1",
+  "name": "@zumper/react-router",
+  "version": "4.3.1-zumper.0",
   "description": "Declarative routing for React",
-  "repository": "ReactTraining/react-router",
+  "repository": "zumper/react-router",
   "license": "MIT",
   "authors": [
     "Michael Jackson",
@@ -34,7 +34,7 @@
     "clean": "git clean -fdX .",
     "lint": "eslint modules",
     "test": "jest",
-    "zumper": "npm run build && tar cvzf ~/downloads/react-router-v4.3.1.tgz --exclude package-lock.json --exclude node_modules --exclude __tests__ --exclude docs --exclude '.DS_Store' ."
+    "zumper": "npm run build && tar cvzf ~/downloads/zumper-react-router-v$npm_package_version.tgz --exclude package-lock.json --exclude node_modules --exclude __tests__ --exclude docs --exclude '.DS_Store' ."
   },
   "peerDependencies": {
     "react": ">=15"
@@ -92,5 +92,8 @@
     "routing",
     "history",
     "link"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
