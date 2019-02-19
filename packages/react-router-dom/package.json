@@ -1,6 +1,6 @@
 {
   "name": "@zumper/react-router-dom",
-  "version": "4.4.0-zumper.3",
+  "version": "4.4.0-zumper.2",
   "description": "DOM bindings for React Router",
   "repository": "zumper/react-router",
   "license": "MIT",
