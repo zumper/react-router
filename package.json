@@ -9,10 +9,10 @@
     "zumper": "cd packages/react-router && npm run zumper && cd ../../ && cd packages/react-router-dom && npm run zumper"
   },
   "devDependencies": {
-    "husky": "^1.1.3",
-    "lerna": "^3.4.3",
-    "prettier": "^1.14.3",
-    "pretty-quick": "^1.4.1"
+    "husky": "^1.3.1",
+    "lerna": "^3.13.0",
+    "prettier": "^1.16.4",
+    "pretty-quick": "^1.10.0"
   },
   "dependencies": {},
   "husky": {
