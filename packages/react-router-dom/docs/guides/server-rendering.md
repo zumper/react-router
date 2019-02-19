@@ -185,7 +185,13 @@ Then use this config to render your routes in the app:
 ```jsx
 import { routes } from "./routes";
 
-const App = () => <Switch>{routes.map(route => <Route {...route} />)}</Switch>;
+const App = () => (
+  <Switch>
+    {routes.map(route => (
+      <Route {...route} />
+    ))}
+  </Switch>
+);
 ```
 
 Then on the server you'd have something like:

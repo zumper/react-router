@@ -64,9 +64,9 @@ rendered with [route props](#route-props).
 ```jsx
 <Route path="/user/:username" component={User} />;
 
-const User = ({ match }) => {
+function User({ match }) {
   return <h1>Hello {match.params.username}!</h1>;
-};
+}
 ```
 
 When you use `component` (instead of `render` or `children`, below) the router uses [`React.createElement`](https://facebook.github.io/react/docs/react-api.html#createelement) to create a new [React element](https://facebook.github.io/react/docs/rendering-elements.html) from the given component. That means if you provide an inline function to the `component` prop, you would create a new component every render. This results in the existing component unmounting and the new component mounting instead of just updating the existing component. When using an inline function for inline rendering, use the `render` or the `children` prop (below).
@@ -133,12 +133,16 @@ This could also be useful for animations:
 
 **Warning:** Both `<Route component>` and `<Route render>` take precedence over `<Route children>` so don't use more than one in the same `<Route>`.
 
-## path: string
+## path: string | string[]
 
-Any valid URL path that [`path-to-regexp@^1.7.0`](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) understands.
+Any valid URL path or array of paths that [`path-to-regexp@^1.7.0`](https://github.com/pillarjs/path-to-regexp/tree/v1.7.0) understands.
 
 ```jsx
 <Route path="/users/:id" component={User} />
+```
+
+```jsx
+<Route path={["/users/:id", "/profile/:id"]} component={User} />
 ```
 
 Routes without a `path` _always_ match.

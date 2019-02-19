@@ -45,20 +45,14 @@ Input.propTypes = {
 };
 
 class MailingListSignup extends Component {
-  state = {
-    email: "",
-    submitted: true
-  };
+  state = { email: "", submitted: false };
 
   handleSubmit = e => {
     e.preventDefault();
 
     if (this.state.email) {
       subscribeToMailingList(this.state.email).then(() => {
-        this.setState({
-          email: "",
-          submitted: true
-        });
+        this.setState({ email: "", submitted: true });
       });
     }
   };
@@ -102,7 +96,8 @@ class MailingListSignup extends Component {
                     style={{ textDecoration: "underline" }}
                   >
                     our React workshops
-                  </a>, and more:
+                  </a>
+                  , and more:
                 </Block>
                 <form onSubmit={this.handleSubmit}>
                   <Flex

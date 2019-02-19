@@ -1,9 +1,8 @@
 import React from "react";
-import Switch from "react-router/Switch";
-import Route from "react-router/Route";
+import { Switch, Route } from "react-router";
 
-const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
-  routes ? (
+function renderRoutes(routes, extraProps = {}, switchProps = {}) {
+  return routes ? (
     <Switch {...switchProps}>
       {routes.map((route, i) => (
         <Route
@@ -11,12 +10,17 @@ const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
           path={route.path}
           exact={route.exact}
           strict={route.strict}
-          render={props => (
-            <route.component {...props} {...extraProps} route={route} />
-          )}
+          render={props =>
+            route.render ? (
+              route.render({ ...props, ...extraProps, route: route })
+            ) : (
+              <route.component {...props} {...extraProps} route={route} />
+            )
+          }
         />
       ))}
     </Switch>
   ) : null;
+}
 
 export default renderRoutes;

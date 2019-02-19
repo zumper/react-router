@@ -20,10 +20,10 @@ A string representation of the location to link to, created by concatenating the
 
 An object that can have any of the following properties:
 
-* `pathname`: A string representing the path to link to.
-* `search`: A string representation of query parameters.
-* `hash`: A hash to put in the URL, e.g. `#a-hash`.
-* `state`: State to persist to the `location`.
+- `pathname`: A string representing the path to link to.
+- `search`: A string representation of query parameters.
+- `hash`: A hash to put in the URL, e.g. `#a-hash`.
+- `state`: State to persist to the `location`.
 
 ```jsx
 <Link
@@ -54,6 +54,16 @@ const refCallback = node => {
 }
 
 <Link to="/" innerRef={refCallback} />
+```
+
+## innerRef: RefObject
+
+Get the underlying `ref` of the component with `React.createRef()`
+
+```jsx
+const anchorRef = React.createRef()
+
+<Link to="/" innerRef={anchorRef} />
 ```
 
 ## others

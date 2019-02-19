@@ -1,5 +1,4 @@
 {
-  "lerna": "2.2.0",
-  "version": "independent",
-  "packages": ["packages/{react-router,react-router-dom}"]
+  "packages": ["packages/{react-router,react-router-dom}"],
+  "version": "4.4.0-beta.6"
 }

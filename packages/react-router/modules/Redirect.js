@@ -1,99 +1,66 @@
 import React from "react";
 import PropTypes from "prop-types";
-import warning from "warning";
-import invariant from "invariant";
 import { createLocation, locationsAreEqual } from "history";
+import invariant from "tiny-invariant";
+
+import Lifecycle from "./Lifecycle";
+import RouterContext from "./RouterContext";
 import generatePath from "./generatePath";
 
 /**
- * The public API for updating the location programmatically
- * with a component.
+ * The public API for navigating programmatically with a component.
  */
-class Redirect extends React.Component {
-  static propTypes = {
-    computedMatch: PropTypes.object, // private, from <Switch>
+function Redirect({ computedMatch, to, push = false }) {
+  return (
+    <RouterContext.Consumer>
+      {context => {
+        invariant(context, "You should not use <Redirect> outside a <Router>");
+
+        const { history, staticContext } = context;
+
+        const method = push ? history.push : history.replace;
+        const location = createLocation(
+          computedMatch
+            ? typeof to === "string"
+              ? generatePath(to, computedMatch.params)
+              : {
+                  ...to,
+                  pathname: generatePath(to.pathname, computedMatch.params)
+                }
+            : to
+        );
+
+        // When rendering in a static context,
+        // set the new location immediately.
+        if (staticContext) {
+          method(location);
+          return null;
+        }
+
+        return (
+          <Lifecycle
+            onMount={() => {
+              method(location);
+            }}
+            onUpdate={(self, prevProps) => {
+              if (!locationsAreEqual(prevProps.to, location)) {
+                method(location);
+              }
+            }}
+            to={to}
+          />
+        );
+      }}
+    </RouterContext.Consumer>
+  );
+}
+
+if (__DEV__) {
+  Redirect.propTypes = {
     push: PropTypes.bool,
     from: PropTypes.string,
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
   };
-
-  static defaultProps = {
-    push: false
-  };
-
-  static contextTypes = {
-    router: PropTypes.shape({
-      history: PropTypes.shape({
-        push: PropTypes.func.isRequired,
-        replace: PropTypes.func.isRequired
-      }).isRequired,
-      staticContext: PropTypes.object
-    }).isRequired
-  };
-
-  isStatic() {
-    return this.context.router && this.context.router.staticContext;
-  }
-
-  componentWillMount() {
-    invariant(
-      this.context.router,
-      "You should not use <Redirect> outside a <Router>"
-    );
-
-    if (this.isStatic()) this.perform();
-  }
-
-  componentDidMount() {
-    if (!this.isStatic()) this.perform();
-  }
-
-  componentDidUpdate(prevProps) {
-    const prevTo = createLocation(prevProps.to);
-    const nextTo = createLocation(this.props.to);
-
-    if (locationsAreEqual(prevTo, nextTo)) {
-      warning(
-        false,
-        `You tried to redirect to the same route you're currently on: ` +
-          `"${nextTo.pathname}${nextTo.search}"`
-      );
-      return;
-    }
-
-    this.perform();
-  }
-
-  computeTo({ computedMatch, to }) {
-    if (computedMatch) {
-      if (typeof to === "string") {
-        return generatePath(to, computedMatch.params);
-      } else {
-        return {
-          ...to,
-          pathname: generatePath(to.pathname, computedMatch.params)
-        };
-      }
-    }
-
-    return to;
-  }
-
-  perform() {
-    const { history } = this.context.router;
-    const { push } = this.props;
-    const to = this.computeTo(this.props);
-
-    if (push) {
-      history.push(to);
-    } else {
-      history.replace(to);
-    }
-  }
-
-  render() {
-    return null;
-  }
 }
 
 export default Redirect;
