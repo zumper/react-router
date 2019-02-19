@@ -3,5 +3,5 @@
 import warnAboutDeprecatedESMImport from "./warnAboutDeprecatedESMImport.js";
 warnAboutDeprecatedESMImport("StaticRouter");
 
-import { StaticRouter } from "../esm/react-router.js";
+import { StaticRouter } from "../esm/zumper-react-router.js";
 export default StaticRouter;

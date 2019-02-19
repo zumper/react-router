@@ -3,5 +3,5 @@
 import warnAboutDeprecatedESMImport from "./warnAboutDeprecatedESMImport.js";
 warnAboutDeprecatedESMImport("Prompt");
 
-import { Prompt } from "../esm/react-router-dom.js";
+import { Prompt } from "../esm/zumper-react-router-dom.js";
 export default Prompt;

@@ -4,11 +4,13 @@ import commonjs from "rollup-plugin-commonjs";
 import nodeResolve from "rollup-plugin-node-resolve";
 import { sizeSnapshot } from "rollup-plugin-size-snapshot";
 import { terser } from "rollup-plugin-terser";
+import kebabCase from "lodash.kebabcase";
 
 import pkg from "./package.json";
 
 const input = "modules/index.js";
 const globalName = "ReactRouterDOM";
+const fileName = kebabCase(pkg.name);
 
 function external(id) {
   return !id.startsWith(".") && !id.startsWith("/");
@@ -17,7 +19,7 @@ function external(id) {
 const cjs = [
   {
     input,
-    output: { file: `cjs/${pkg.name}.js`, format: "cjs" },
+    output: { file: `cjs/${fileName}.js`, format: "cjs" },
     external,
     plugins: [
       babel({ exclude: /node_modules/ }),
@@ -26,7 +28,7 @@ const cjs = [
   },
   {
     input,
-    output: { file: `cjs/${pkg.name}.min.js`, format: "cjs" },
+    output: { file: `cjs/${fileName}.min.js`, format: "cjs" },
     external,
     plugins: [
       babel({ exclude: /node_modules/ }),
@@ -39,7 +41,7 @@ const cjs = [
 const esm = [
   {
     input,
-    output: { file: `esm/${pkg.name}.js`, format: "esm" },
+    output: { file: `esm/${fileName}.js`, format: "esm" },
     external,
     plugins: [
       babel({
@@ -58,7 +60,7 @@ const umd = [
   {
     input,
     output: {
-      file: `umd/${pkg.name}.js`,
+      file: `umd/${fileName}.js`,
       format: "umd",
       name: globalName,
       globals
@@ -86,7 +88,7 @@ const umd = [
   {
     input,
     output: {
-      file: `umd/${pkg.name}.min.js`,
+      file: `umd/${fileName}.min.js`,
       format: "umd",
       name: globalName,
       globals

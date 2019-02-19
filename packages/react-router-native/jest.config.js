@@ -3,6 +3,6 @@ module.exports = {
   testRunner: "jest-circus/runner",
   restoreMocks: true,
   moduleNameMapper: {
-    "^react-router$": "<rootDir>/../react-router/cjs/react-router.js"
+    "^react-router$": "<rootDir>/../react-router/cjs/zumper-react-router.js"
   }
 };

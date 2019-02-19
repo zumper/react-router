@@ -32,7 +32,7 @@
     "umd"
   ],
   "main": "index.js",
-  "module": "esm/react-router-dom.js",
+  "module": "esm/zumper-react-router-dom.js",
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
@@ -68,6 +68,7 @@
     "eslint-plugin-react": "^7.12.4",
     "jest": "^23.6.0",
     "jest-circus": "^23.6.0",
+    "lodash.kebabcase": "4.1.1",
     "raf": "^3.4.1",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",

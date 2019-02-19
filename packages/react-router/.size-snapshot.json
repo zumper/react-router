@@ -1,15 +1,15 @@
 {
-  "esm/react-router.js": {
-    "bundled": 22391,
-    "minified": 12617,
-    "gzipped": 3438,
+  "esm/zumper-react-router.js": {
+    "bundled": 24364,
+    "minified": 13418,
+    "gzipped": 3810,
     "treeshaked": {
       "rollup": {
-        "code": 2267,
+        "code": 2402,
         "import_statements": 465
       },
       "webpack": {
-        "code": 3630
+        "code": 3767
       }
     }
   },
@@ -22,5 +22,15 @@
     "bundled": 63839,
     "minified": 22264,
     "gzipped": 7893
+  },
+  "umd/zumper-react-router.js": {
+    "bundled": 107119,
+    "minified": 37907,
+    "gzipped": 11985
+  },
+  "umd/zumper-react-router.min.js": {
+    "bundled": 67187,
+    "minified": 23386,
+    "gzipped": 8280
   }
 }

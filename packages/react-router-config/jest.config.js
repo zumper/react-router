@@ -17,7 +17,7 @@ module.exports = {
     __DEV__: true
   },
   moduleNameMapper: {
-    "^react-router$": "<rootDir>/../react-router/cjs/react-router.js",
+    "^react-router$": "<rootDir>/../react-router/cjs/zumper-react-router.js",
     "^react-router-config$": mappedModule
   },
   modulePaths: ["<rootDir>/node_modules"],

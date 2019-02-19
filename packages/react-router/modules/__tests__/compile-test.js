@@ -5,11 +5,11 @@ describe("compile", () => {
     const compiled = compile({ path: "/", patterns: {} });
 
     it("compiles to `^/`", () => {
-      expect(compiled.re.source).toBe(/^\/?/.source);
+      expect(compiled.regexp.source).toBe(/^\/?/.source);
     });
 
     it("matches `/`", () => {
-      expect(compiled.re.test("/")).toBe(true);
+      expect(compiled.regexp.test("/")).toBe(true);
     });
 
     it("produces keys=`[]`", () => {
@@ -21,15 +21,15 @@ describe("compile", () => {
     describe("compiles to `^/somewhere/else`", () => {
       const compiled = compile({ path: "/somewhere/else", patterns: {} });
       it("compiles to `^/somewhere/else`", () => {
-        expect(compiled.re.source).toBe(
+        expect(compiled.regexp.source).toBe(
           /^\/somewhere\/else\/?(?=[/]|$)/.source
         );
       });
       it("matches `/somewhere/else`", () => {
-        expect(compiled.re.test("/somewhere/else")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/else")).toBe(true);
       });
       it("matches `/somewhere/else/altogether`", () => {
-        expect(compiled.re.test("/somewhere/else/altogether")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/else/altogether")).toBe(true);
       });
       it("produces keys=`[]`", () => {
         expect(compiled.keys).toEqual([]);
@@ -43,13 +43,15 @@ describe("compile", () => {
         strict: true
       });
       it("+strict compiles to `^/somewhere/else/?`", () => {
-        expect(compiled.re.source).toBe(/^\/somewhere\/else(?=[/]|$)/.source);
+        expect(compiled.regexp.source).toBe(
+          /^\/somewhere\/else(?=[/]|$)/.source
+        );
       });
       it("matches `/somewhere/else`", () => {
-        expect(compiled.re.test("/somewhere/else")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/else")).toBe(true);
       });
       it("matches `/somewhere/else/altogether`", () => {
-        expect(compiled.re.test("/somewhere/else/altogether")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/else/altogether")).toBe(true);
       });
       it("produces keys=`[]`", () => {
         expect(compiled.keys).toEqual([]);
@@ -63,13 +65,13 @@ describe("compile", () => {
         exact: true
       });
       it("+exact compiles to `^/somewhere/else$`", () => {
-        expect(compiled.re.source).toBe(/^\/somewhere\/else\/?$/.source);
+        expect(compiled.regexp.source).toBe(/^\/somewhere\/else\/?$/.source);
       });
       it("matches `/somewhere/else`", () => {
-        expect(compiled.re.test("/somewhere/else")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/else")).toBe(true);
       });
       it("does not match `/somewhere/else/altogether`", () => {
-        expect(compiled.re.test("/somewhere/else/altogether")).toBe(false);
+        expect(compiled.regexp.test("/somewhere/else/altogether")).toBe(false);
       });
       it("produces keys=`[]`", () => {
         expect(compiled.keys).toEqual([]);
@@ -89,13 +91,13 @@ describe("compile", () => {
       });
 
       it("matches `/somewhere/ok/happy`", () => {
-        expect(compiled.re.test("/somewhere/ok/happy")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/ok/happy")).toBe(true);
       });
       it("matches `/somewhere/ok/a_b,_;happy`", () => {
-        expect(compiled.re.test("/somewhere/ok/a_b,_;happy")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/ok/a_b,_;happy")).toBe(true);
       });
       it("does not match `/somewhere/else/altogether`", () => {
-        expect(compiled.re.test("/somewhere/else/altogether")).toBe(false);
+        expect(compiled.regexp.test("/somewhere/else/altogether")).toBe(false);
       });
       it("produces keys `[variable, other]`", () => {
         expect(compiled.keys).toEqual([
@@ -118,24 +120,24 @@ describe("compile", () => {
         strict: true
       });
       it("compiles to `^/(?:some)?\\where/([a-z]+)(?:/ending/?)?$`", () => {
-        expect(compiled.re.source).toBe(
+        expect(compiled.regexp.source).toBe(
           /^\/(?:some)?\where\/([a-z]+)(?:\/ending\/?)?$/.source
         );
       });
       it("matches `/somewhere/ok", () => {
-        expect(compiled.re.test("/somewhere/ok")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/ok")).toBe(true);
       });
       it("matches `/some_here/ok", () => {
-        expect(compiled.re.test("/some_here/ok")).toBe(true);
+        expect(compiled.regexp.test("/some_here/ok")).toBe(true);
       });
       it("matches `/where/ok", () => {
-        expect(compiled.re.test("/where/ok")).toBe(true);
+        expect(compiled.regexp.test("/where/ok")).toBe(true);
       });
       it("matches `/somewhere/else/ending`", () => {
-        expect(compiled.re.test("/somewhere/else/ending")).toBe(true);
+        expect(compiled.regexp.test("/somewhere/else/ending")).toBe(true);
       });
       it("does not match `/some_were/else/altogether`", () => {
-        expect(compiled.re.test("/some_were/else/altogether")).toBe(false);
+        expect(compiled.regexp.test("/some_were/else/altogether")).toBe(false);
       });
     });
   });
@@ -150,10 +152,10 @@ describe("compile", () => {
       const compiled = compile({ path: "/:one/mid/:two?", patterns });
 
       it("matches `/abc/mid/123`", () => {
-        expect(compiled.re.test("/abc/mid/123")).toBe(true);
+        expect(compiled.regexp.test("/abc/mid/123")).toBe(true);
       });
       it("matches `/abc/mid/123/456`", () => {
-        expect(compiled.re.test("/abc/mid/123/456")).toBe(true);
+        expect(compiled.regexp.test("/abc/mid/123/456")).toBe(true);
       });
       it("produces keys `[one, two:optional]`", () => {
         expect(compiled.keys).toEqual([
