@@ -1,4 +1,4 @@
-import compile from "../compile";
+import { compile } from "@zumper/react-router";
 
 describe("compile", () => {
   describe('with path="/"', () => {

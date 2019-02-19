@@ -28,7 +28,7 @@ if (process.env.NODE_ENV !== "production") {
 
 export default function(member) {
   printWarning(
-    'Please use `import { %s } from "react-router-dom"` instead of `import %s from "react-router-dom/es/%s"`. ' +
+    'Please use `import { %s } from "@zumper/react-router-dom"` instead of `import %s from "@zumper/react-router-dom/es/%s"`. ' +
       "Support for the latter will be removed in the next major release.",
     [member, member]
   );

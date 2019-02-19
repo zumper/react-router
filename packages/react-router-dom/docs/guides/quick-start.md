@@ -30,7 +30,7 @@ Note: Instead of `<a href="/">` we use `<Link to="/">`.
 
 ```jsx
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "@zumper/react-router-dom";
 
 const Index = () => <h2>Home</h2>;
 const About = () => <h2>About</h2>;
@@ -69,7 +69,7 @@ This example shows how nested routing works. The route `/topics` loads the `Topi
 
 ```jsx
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "@zumper/react-router-dom";
 
 const App = () => (
   <Router>

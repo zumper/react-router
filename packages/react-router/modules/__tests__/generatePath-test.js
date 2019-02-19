@@ -1,4 +1,4 @@
-import { generatePath } from "react-router";
+import { generatePath } from "@zumper/react-router";
 
 describe("generatePath", () => {
   describe('with pattern="/"', () => {

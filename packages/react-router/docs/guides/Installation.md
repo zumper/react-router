@@ -19,7 +19,7 @@ import {
   Route,
   Link
   // etc.
-} from "react-router-dom";
+} from "@zumper/react-router-dom";
 ```
 
 ## Native
@@ -60,7 +60,7 @@ import {
   MemoryRouter as Router,
   Route
   // etc.
-} from "react-router";
+} from "@zumper/react-router";
 ```
 
 You can use React Router's navigation anywhere you run React, the navigation state is kept in a memory router. You can look at the implementation of `NativeRouter` to get an idea on how to integrate.

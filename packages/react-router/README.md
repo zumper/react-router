@@ -18,12 +18,12 @@ Then with a module bundler like [webpack](https://webpack.github.io/), use as yo
 
 ```js
 // using ES6 modules
-import { Router, Route, Switch } from "react-router";
+import { Router, Route, Switch } from "@zumper/react-router";
 
 // using CommonJS modules
-var Router = require("react-router").Router;
-var Route = require("react-router").Route;
-var Switch = require("react-router").Switch;
+var Router = require("@zumper/react-router").Router;
+var Route = require("@zumper/react-router").Route;
+var Switch = require("@zumper/react-router").Switch;
 ```
 
 The UMD build is also available on [unpkg](https://unpkg.com):

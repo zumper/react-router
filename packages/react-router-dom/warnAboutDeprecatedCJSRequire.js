@@ -28,7 +28,7 @@ if (process.env.NODE_ENV !== "production") {
 
 module.exports = function(member) {
   printWarning(
-    'Please use `require("react-router-dom").%s` instead of `require("react-router-dom/%s")`. ' +
+    'Please use `require("@zumper/react-router-dom").%s` instead of `require("@zumper/react-router-dom/%s")`. ' +
       "Support for the latter will be removed in the next major release.",
     [member, member]
   );

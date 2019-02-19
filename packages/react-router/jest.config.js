@@ -17,7 +17,7 @@ module.exports = {
     __DEV__: true
   },
   moduleNameMapper: {
-    "^react-router$": mappedModule
+    "^@zumper/react-router$": mappedModule
   },
   modulePaths: ["<rootDir>/node_modules"],
   setupFiles: ["raf/polyfill"],

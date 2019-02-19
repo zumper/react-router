@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router";
+import { Route } from "@zumper/react-router";
 import PropTypes from "prop-types";
 
 import Link from "./Link";

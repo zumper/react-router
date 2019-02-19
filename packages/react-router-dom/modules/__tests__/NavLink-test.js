@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { MemoryRouter, NavLink, withRouter } from "react-router-dom";
+import { MemoryRouter, NavLink, withRouter } from "@zumper/react-router-dom";
 
 import renderStrict from "./utils/renderStrict";
 
