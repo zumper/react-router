@@ -4,3 +4,5 @@ npm-debug.log
 
 # lerna
 lerna-debug.log
+
+*.tgz
