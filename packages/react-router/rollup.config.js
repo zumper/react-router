@@ -8,7 +8,7 @@ import kebabCase from "lodash.kebabcase";
 
 const pkg = require("./package.json");
 
-const fileName = kebabCase(fileName);
+const fileName = kebabCase(pkg.name);
 function isBareModuleId(id) {
   return !id.startsWith(".") && !id.startsWith("/");
 }
