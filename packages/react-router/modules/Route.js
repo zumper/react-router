@@ -1,5 +1,5 @@
 import React from "react";
-import { isValidElementType } from "react-is";
+import * as ReactIs from "react-is";
 import PropTypes from "prop-types";
 import invariant from "tiny-invariant";
 import warning from "tiny-warning";
@@ -25,8 +25,8 @@ class Route extends React.Component {
           const match = this.props.computedMatch
             ? this.props.computedMatch // <Switch> already computed the match for us
             : this.props.path
-              ? matchPath(location.pathname, this.props)
-              : context.match;
+            ? matchPath(location.pathname, this.props)
+            : context.match;
 
           const props = { ...context, location, match };
 
@@ -62,12 +62,12 @@ class Route extends React.Component {
               {children && !isEmptyChildren(children)
                 ? children
                 : props.match
-                  ? component
-                    ? React.createElement(component, props)
-                    : render
-                      ? render(props)
-                      : null
-                  : null}
+                ? component
+                  ? React.createElement(component, props)
+                  : render
+                  ? render(props)
+                  : null
+                : null}
             </RouterContext.Provider>
           );
         }}
@@ -80,7 +80,7 @@ if (__DEV__) {
   Route.propTypes = {
     children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
     component: (props, propName) => {
-      if (props[propName] && !isValidElementType(props[propName])) {
+      if (props[propName] && !ReactIs.isValidElementType(props[propName])) {
         return new Error(
           `Invalid prop 'component' supplied to 'Route': the prop is not a valid React component`
         );

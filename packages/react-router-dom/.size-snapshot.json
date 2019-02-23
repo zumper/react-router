@@ -1,8 +1,8 @@
 {
   "esm/zumper-react-router-dom.js": {
-    "bundled": 8108,
-    "minified": 4897,
-    "gzipped": 1639,
+    "bundled": 8096,
+    "minified": 4885,
+    "gzipped": 1634,
     "treeshaked": {
       "rollup": {
         "code": 461,
@@ -24,9 +24,9 @@
     "gzipped": 10220
   },
   "umd/zumper-react-router-dom.js": {
-    "bundled": 182540,
-    "minified": 65539,
-    "gzipped": 18725
+    "bundled": 183206,
+    "minified": 65836,
+    "gzipped": 18905
   },
   "umd/zumper-react-router-dom.min.js": {
     "bundled": 107748,
