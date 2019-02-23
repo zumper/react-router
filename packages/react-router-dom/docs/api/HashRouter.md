@@ -5,11 +5,11 @@ A [`<Router>`](../../../react-router/docs/api/Router.md) that uses the hash port
 **IMPORTANT NOTE:** Hash history does not support `location.key` or `location.state`. In previous versions we attempted to shim the behavior but there were edge-cases we couldn't solve. Any code or plugin that needs this behavior won't work. As this technique is only intended to support legacy browsers, we encourage you to configure your server to work with `<BrowserHistory>` instead.
 
 ```jsx
-import { HashRouter } from '@zumper/react-router-dom'
+import { HashRouter } from "@zumper/react-router-dom";
 
 <HashRouter>
-  <App/>
-</HashRouter>
+  <App />
+</HashRouter>;
 ```
 
 ## basename: string
@@ -27,21 +27,21 @@ A function to use to confirm navigation. Defaults to using [`window.confirm`](ht
 
 ```jsx
 // this is the default behavior
-const getConfirmation = (message, callback) => {
-  const allowTransition = window.confirm(message)
-  callback(allowTransition)
+function getConfirmation(message, callback) {
+  const allowTransition = window.confirm(message);
+  callback(allowTransition);
 }
 
-<HashRouter getUserConfirmation={getConfirmation}/>
+<HashRouter getUserConfirmation={getConfirmation} />;
 ```
 
 ## hashType: string
 
 The type of encoding to use for `window.location.hash`. Available values are:
 
-* `"slash"` - Creates hashes like `#/` and `#/sunshine/lollipops`
-* `"noslash"` - Creates hashes like `#` and `#sunshine/lollipops`
-* `"hashbang"` - Creates ["ajax crawlable"](https://developers.google.com/webmasters/ajax-crawling/docs/learn-more) (deprecated by Google) hashes like `#!/` and `#!/sunshine/lollipops`
+- `"slash"` - Creates hashes like `#/` and `#/sunshine/lollipops`
+- `"noslash"` - Creates hashes like `#` and `#sunshine/lollipops`
+- `"hashbang"` - Creates ["ajax crawlable"](https://developers.google.com/webmasters/ajax-crawling/docs/learn-more) (deprecated by Google) hashes like `#!/` and `#!/sunshine/lollipops`
 
 Defaults to `"slash"`.
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { Block } from "jsxstyle";
+import PropTypes from "prop-types";
+
 import ScrollToDoc from "./ScrollToDoc";
 import MarkdownViewer from "./MarkdownViewer";
 
@@ -30,9 +31,9 @@ class API extends Component {
           ))}
         </Block>
         {mod && !doc && <Redirect to={`/${environment}/api`} />}
-        {headerParam &&
-          doc &&
-          !header && <Redirect to={`/${environment}/api/${mod}`} />}
+        {headerParam && doc && !header && (
+          <Redirect to={`/${environment}/api/${mod}`} />
+        )}
       </Block>
     );
   }

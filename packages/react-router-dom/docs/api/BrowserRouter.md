@@ -3,7 +3,7 @@
 A [`<Router>`](../../../react-router/docs/api/Router.md) that uses the HTML5 history API (`pushState`, `replaceState` and the `popstate` event) to keep your UI in sync with the URL.
 
 ```jsx
-import { BrowserRouter } from '@zumper/react-router-dom'
+import { BrowserRouter } from "@zumper/react-router-dom";
 
 <BrowserRouter
   basename={optionalString}
@@ -11,8 +11,8 @@ import { BrowserRouter } from '@zumper/react-router-dom'
   getUserConfirmation={optionalFunc}
   keyLength={optionalNumber}
 >
-  <App/>
-</BrowserRouter>
+  <App />
+</BrowserRouter>;
 ```
 
 ## basename: string
@@ -20,7 +20,7 @@ import { BrowserRouter } from '@zumper/react-router-dom'
 The base URL for all locations. If your app is served from a sub-directory on your server, you'll want to set this to the sub-directory. A properly formatted basename should have a leading slash, but no trailing slash.
 
 ```jsx
-<BrowserRouter basename="/calendar"/>
+<BrowserRouter basename="/calendar" />
 <Link to="/today"/> // renders <a href="/calendar/today">
 ```
 
@@ -30,12 +30,12 @@ A function to use to confirm navigation. Defaults to using [`window.confirm`](ht
 
 ```jsx
 // this is the default behavior
-const getConfirmation = (message, callback) => {
-  const allowTransition = window.confirm(message)
-  callback(allowTransition)
+function getConfirmation(message, callback) {
+  const allowTransition = window.confirm(message);
+  callback(allowTransition);
 }
 
-<BrowserRouter getUserConfirmation={getConfirmation}/>
+<BrowserRouter getUserConfirmation={getConfirmation} />;
 ```
 
 ## forceRefresh: bool
@@ -44,7 +44,7 @@ If `true` the router will use full page refreshes on page navigation. You probab
 
 ```jsx
 const supportsHistory = 'pushState' in window.history
-<BrowserRouter forceRefresh={!supportsHistory}/>
+<BrowserRouter forceRefresh={!supportsHistory} />
 ```
 
 ## keyLength: number

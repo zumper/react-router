@@ -1,35 +1,33 @@
-import babel from "rollup-plugin-babel";
-import replace from "rollup-plugin-replace";
-import commonjs from "rollup-plugin-commonjs";
-import nodeResolve from "rollup-plugin-node-resolve";
-import { sizeSnapshot } from "rollup-plugin-size-snapshot";
+const babel = require("rollup-plugin-babel");
+const replace = require("rollup-plugin-replace");
+const commonjs = require("rollup-plugin-commonjs");
+const nodeResolve = require("rollup-plugin-node-resolve");
+const { sizeSnapshot } = require("rollup-plugin-size-snapshot");
 import { terser } from "rollup-plugin-terser";
 import kebabCase from "lodash.kebabcase";
 
-import pkg from "./package.json";
+const pkg = require("./package.json");
 
-const input = "modules/index.js";
-const globalName = "ReactRouterDOM";
 const fileName = kebabCase(pkg.name);
 
-function external(id) {
+function isBareModuleId(id) {
   return !id.startsWith(".") && !id.startsWith("/");
 }
 
 const cjs = [
   {
-    input,
+    input: "modules/index.js",
     output: { file: `cjs/${fileName}.js`, format: "cjs" },
-    external,
+    external: isBareModuleId,
     plugins: [
       babel({ exclude: /node_modules/ }),
       replace({ "process.env.NODE_ENV": JSON.stringify("development") })
     ]
   },
   {
-    input,
+    input: "modules/index.js",
     output: { file: `cjs/${fileName}.min.js`, format: "cjs" },
-    external,
+    external: isBareModuleId,
     plugins: [
       babel({ exclude: /node_modules/ }),
       replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
@@ -40,9 +38,9 @@ const cjs = [
 
 const esm = [
   {
-    input,
+    input: "modules/index.js",
     output: { file: `esm/${fileName}.js`, format: "esm" },
-    external,
+    external: isBareModuleId,
     plugins: [
       babel({
         exclude: /node_modules/,
@@ -58,11 +56,11 @@ const globals = { react: "React" };
 
 const umd = [
   {
-    input,
+    input: "modules/index.js",
     output: {
       file: `umd/${fileName}.js`,
       format: "umd",
-      name: globalName,
+      name: "ReactRouterDOM",
       globals
     },
     external: Object.keys(globals),
@@ -86,11 +84,11 @@ const umd = [
     ]
   },
   {
-    input,
+    input: "modules/index.js",
     output: {
       file: `umd/${fileName}.min.js`,
       format: "umd",
-      name: globalName,
+      name: "ReactRouterDOM",
       globals
     },
     external: Object.keys(globals),
@@ -131,4 +129,4 @@ switch (process.env.BUILD_ENV) {
     config = cjs.concat(esm).concat(umd);
 }
 
-export default config;
+module.exports = config;

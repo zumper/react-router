@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -46,22 +46,21 @@ const fakeAuth = {
   }
 };
 
-const AuthButton = withRouter(
-  ({ history }) =>
-    fakeAuth.isAuthenticated ? (
-      <p>
-        Welcome!{" "}
-        <button
-          onClick={() => {
-            fakeAuth.signout(() => history.push("/"));
-          }}
-        >
-          Sign out
-        </button>
-      </p>
-    ) : (
-      <p>You are not logged in.</p>
-    )
+const AuthButton = withRouter(({ history }) =>
+  fakeAuth.isAuthenticated ? (
+    <p>
+      Welcome!{" "}
+      <button
+        onClick={() => {
+          fakeAuth.signout(() => history.push("/"));
+        }}
+      >
+        Sign out
+      </button>
+    </p>
+  ) : (
+    <p>You are not logged in.</p>
+  )
 );
 
 function PrivateRoute({ component: Component, ...rest }) {
@@ -92,7 +91,7 @@ function Protected() {
   return <h3>Protected</h3>;
 }
 
-class Login extends React.Component {
+class Login extends Component {
   state = { redirectToReferrer: false };
 
   login = () => {
