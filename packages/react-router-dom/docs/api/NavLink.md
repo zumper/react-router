@@ -3,9 +3,9 @@
 A special version of the [`<Link>`](Link.md) that will add styling attributes to the rendered element when it matches the current URL.
 
 ```jsx
-import { NavLink } from '@zumper/react-router-dom'
+import { NavLink } from "@zumper/react-router-dom";
 
-<NavLink to="/about">About</NavLink>
+<NavLink to="/about">About</NavLink>;
 ```
 
 ## activeClassName: string
@@ -62,16 +62,15 @@ A function to add extra logic for determining whether the link is active. This s
 // only consider an event active if its event id is an odd number
 const oddEvent = (match, location) => {
   if (!match) {
-    return false
+    return false;
   }
-  const eventID = parseInt(match.params.eventID)
-  return !isNaN(eventID) && eventID % 2 === 1
-}
+  const eventID = parseInt(match.params.eventID);
+  return !isNaN(eventID) && eventID % 2 === 1;
+};
 
-<NavLink
-  to="/events/123"
-  isActive={oddEvent}
->Event 123</NavLink>
+<NavLink to="/events/123" isActive={oddEvent}>
+  Event 123
+</NavLink>;
 ```
 
 ## location: object
@@ -79,7 +78,7 @@ const oddEvent = (match, location) => {
 The [`isActive`](#isactive-func) compares the current history location (usually the current browser URL).
 To compare to a different location, a [`location`](../../../react-router/docs/api/location.md) can be passed.
 
-## ariaCurrent: string
+## aria-current: string
 
 The value of the `aria-current` attribute used on an active link. Available values are:
 
