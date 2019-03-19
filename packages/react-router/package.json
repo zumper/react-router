@@ -1,6 +1,6 @@
 {
   "name": "@zumper/react-router",
-  "version": "5.0.0-zumper.5",
+  "version": "5.0.0-zumper.6",
   "description": "Declarative routing for React",
   "repository": "zumper/react-router",
   "license": "MIT",
