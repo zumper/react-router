@@ -1,8 +1,12 @@
 import React from "react";
-import { Route } from "@zumper/react-router";
+import {
+  __RouterContext as RouterContext,
+  matchPath
+} from "@zumper/react-router";
 import PropTypes from "prop-types";
-
+import invariant from "tiny-invariant";
 import Link from "./Link";
+import { resolveToLocation, normalizeToLocation } from "./utils/locationUtils";
 
 function joinClassnames(...classnames) {
   return classnames.filter(i => i).join(" ");
@@ -18,26 +22,33 @@ function NavLink({
   className: classNameProp,
   exact,
   isActive: isActiveProp,
-  location,
+  location: locationProp,
   strict,
   style: styleProp,
   to,
   ...rest
 }) {
-  const path = typeof to === "object" ? to.pathname : to;
-
-  // Regex taken from: https://github.com/pillarjs/path-to-regexp/blob/master/index.js#L202
-  const escapedPath = path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
-
   return (
-    <Route
-      path={escapedPath}
-      exact={exact}
-      strict={strict}
-      location={location}
-      children={({ location, match }) => {
+    <RouterContext.Consumer>
+      {context => {
+        invariant(context, "You should not use <NavLink> outside a <Router>");
+
+        const currentLocation = locationProp || context.location;
+        const { pathname: pathToMatch } = currentLocation;
+        const toLocation = normalizeToLocation(
+          resolveToLocation(to, currentLocation),
+          currentLocation
+        );
+        const { pathname: path } = toLocation;
+        // Regex taken from: https://github.com/pillarjs/path-to-regexp/blob/master/index.js#L202
+        const escapedPath =
+          path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+
+        const match = escapedPath
+          ? matchPath(pathToMatch, { path: escapedPath, exact, strict })
+          : null;
         const isActive = !!(isActiveProp
-          ? isActiveProp(match, location)
+          ? isActiveProp(match, context.location)
           : match);
 
         const className = isActive
@@ -50,12 +61,12 @@ function NavLink({
             aria-current={(isActive && ariaCurrent) || null}
             className={className}
             style={style}
-            to={to}
+            to={toLocation}
             {...rest}
           />
         );
       }}
-    />
+    </RouterContext.Consumer>
   );
 }
 
@@ -75,10 +86,10 @@ if (__DEV__) {
     activeClassName: PropTypes.string,
     activeStyle: PropTypes.object,
     className: PropTypes.string,
-    exact: Route.propTypes.exact,
+    exact: PropTypes.bool,
     isActive: PropTypes.func,
     location: PropTypes.object,
-    strict: Route.propTypes.strict,
+    strict: PropTypes.bool,
     style: PropTypes.object
   };
 }

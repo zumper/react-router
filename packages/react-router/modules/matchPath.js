@@ -33,7 +33,9 @@ function matchPath(pathname, options = {}) {
   const paths = [].concat(path);
 
   return paths.reduce((matched, path) => {
+    if (!path) return null;
     if (matched) return matched;
+
     // allow for precompiled routes. we check for the existence of a regexp
     // prop and use the precompiled regexp and keys instead of compiling
     const { regexp, keys } = options.regexp

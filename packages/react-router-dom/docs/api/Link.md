@@ -3,9 +3,9 @@
 Provides declarative, accessible navigation around your application.
 
 ```jsx
-import { Link } from '@zumper/react-router-dom'
+import { Link } from "@zumper/react-router-dom";
 
-<Link to="/about">About</Link>
+<Link to="/about">About</Link>;
 ```
 
 ## to: string
@@ -36,6 +36,18 @@ An object that can have any of the following properties:
 />
 ```
 
+## to: function
+
+A function to which current location is passed as an argument and which should return location representation as a string or as an object
+
+```jsx
+<Link to={location => ({ ...location, pathname: "/courses" })} />
+```
+
+```jsx
+<Link to={location => `${location.pathname}?sort=name`} />
+```
+
 ## replace: bool
 
 When `true`, clicking the link will replace the current entry in the history stack instead of adding a new one.
@@ -51,9 +63,9 @@ Allows access to the underlying `ref` of the component
 ```jsx
 const refCallback = node => {
   // `node` refers to the mounted DOM element or null when unmounted
-}
+};
 
-<Link to="/" innerRef={refCallback} />
+<Link to="/" innerRef={refCallback} />;
 ```
 
 ## innerRef: RefObject

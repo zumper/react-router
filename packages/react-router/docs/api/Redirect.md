@@ -3,15 +3,13 @@
 Rendering a `<Redirect>` will navigate to a new location. The new location will override the current location in the history stack, like server-side redirects (HTTP 3xx) do.
 
 ```jsx
-import { Route, Redirect } from '@zumper/react-router'
+import { Route, Redirect } from "@zumper/react-router";
 
-<Route exact path="/" render={() => (
-  loggedIn ? (
-    <Redirect to="/dashboard"/>
-  ) : (
-    <PublicHomePage/>
-  )
-)}/>
+<Route
+  exact
+  path="/"
+  render={() => (loggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />)}
+/>;
 ```
 
 ## to: string
@@ -74,3 +72,7 @@ Match `from` exactly; equivalent to [Route.exact](./Route.md#exact-bool).
 ## strict: bool
 
 Match `from` strictly; equivalent to [Route.strict](./Route.md#strict-bool).
+
+## sensitive: bool
+
+Match `from` case sensitive; equivalent to [Route.sensitive](./Route.md#sensitive-bool).

@@ -1,8 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { MemoryRouter, HashRouter, Link } from "@zumper/react-router-dom";
-
+import {
+  MemoryRouter,
+  Router,
+  HashRouter,
+  Link
+} from "@zumper/react-router-dom";
+import { createMemoryHistory } from "history";
 import renderStrict from "./utils/renderStrict";
+import ReactTestUtils from "react-dom/test-utils";
 
 describe("A <Link>", () => {
   const node = document.createElement("div");
@@ -74,6 +80,34 @@ describe("A <Link>", () => {
     expect(a.getAttribute("href")).toEqual("/the/path?the=query#the-hash");
   });
 
+  it("accepts an object returning function `to` prop", () => {
+    const to = location => ({ ...location, search: "foo=bar" });
+
+    renderStrict(
+      <MemoryRouter initialEntries={["/hello"]}>
+        <Link to={to}>link</Link>
+      </MemoryRouter>,
+      node
+    );
+
+    const a = node.querySelector("a");
+    expect(a.getAttribute("href")).toEqual("/hello?foo=bar");
+  });
+
+  it("accepts a string returning function `to` prop", () => {
+    const to = location => `${location.pathname}?foo=bar`;
+
+    ReactDOM.render(
+      <MemoryRouter initialEntries={["/hello"]}>
+        <Link to={to}>link</Link>
+      </MemoryRouter>,
+      node
+    );
+
+    const a = node.querySelector("a");
+    expect(a.getAttribute("href")).toEqual("/hello?foo=bar");
+  });
+
   describe("with no pathname", () => {
     it("resolves using the current location", () => {
       renderStrict(
@@ -91,12 +125,10 @@ describe("A <Link>", () => {
     });
   });
 
-  it("exposes its ref via an innerRef callback prop", done => {
+  it("exposes its ref via an innerRef callbar prop", () => {
+    let refNode;
     function refCallback(n) {
-      if (n) {
-        expect(n.tagName).toEqual("A");
-        done();
-      }
+      refNode = n;
     }
 
     renderStrict(
@@ -107,6 +139,30 @@ describe("A <Link>", () => {
       </MemoryRouter>,
       node
     );
+
+    expect(refNode).not.toBe(undefined);
+    expect(refNode.tagName).toEqual("A");
+  });
+
+  it("uses a custom component prop", () => {
+    let linkProps;
+    function MyComponent(p) {
+      linkProps = p;
+      return null;
+    }
+
+    renderStrict(
+      <MemoryRouter>
+        <Link component={MyComponent} to="/">
+          link
+        </Link>
+      </MemoryRouter>,
+      node
+    );
+
+    expect(linkProps).not.toBe(undefined);
+    expect(typeof linkProps.href).toBe("string");
+    expect(typeof linkProps.navigate).toBe("function");
   });
 
   it("exposes its ref via an innerRef RefObject prop", done => {
@@ -182,6 +238,171 @@ describe("A <Link>", () => {
         const linkNode = createLinkNode("noslash", "/foo");
         expect(linkNode.getAttribute("href")).toEqual("#foo");
       });
+    });
+  });
+
+  describe("on click events", () => {
+    const memoryHistory = createMemoryHistory();
+    memoryHistory.push = jest.fn();
+
+    beforeEach(() => {
+      memoryHistory.push.mockReset();
+    });
+
+    it("calls onClick eventhandler and history.push", () => {
+      const clickHandler = jest.fn();
+      const to = "/the/path?the=query#the-hash";
+
+      renderStrict(
+        <Router history={memoryHistory}>
+          <Link to={to} onClick={clickHandler}>
+            link
+          </Link>
+        </Router>,
+        node
+      );
+
+      const a = node.querySelector("a");
+      ReactTestUtils.Simulate.click(a, {
+        defaultPrevented: false,
+        button: 0
+      });
+
+      expect(clickHandler).toBeCalledTimes(1);
+      expect(memoryHistory.push).toBeCalledTimes(1);
+      expect(memoryHistory.push).toBeCalledWith(to);
+    });
+
+    it("calls onClick eventhandler and history.push with function `to` prop", () => {
+      const memoryHistoryFoo = createMemoryHistory({
+        initialEntries: ["/foo"]
+      });
+      memoryHistoryFoo.push = jest.fn();
+      const clickHandler = jest.fn();
+      let to = null;
+      const toFn = location => {
+        to = {
+          ...location,
+          pathname: "hello",
+          search: "world"
+        };
+        return to;
+      };
+
+      renderStrict(
+        <Router history={memoryHistoryFoo}>
+          <Link to={toFn} onClick={clickHandler}>
+            link
+          </Link>
+        </Router>,
+        node
+      );
+
+      const a = node.querySelector("a");
+      ReactTestUtils.Simulate.click(a, {
+        defaultPrevented: false,
+        button: 0
+      });
+
+      expect(clickHandler).toBeCalledTimes(1);
+      expect(memoryHistoryFoo.push).toBeCalledTimes(1);
+      expect(memoryHistoryFoo.push).toBeCalledWith(to);
+    });
+
+    it("does not call history.push on right click", () => {
+      const to = "/the/path?the=query#the-hash";
+
+      renderStrict(
+        <Router history={memoryHistory}>
+          <Link to={to}>link</Link>
+        </Router>,
+        node
+      );
+
+      const a = node.querySelector("a");
+      ReactTestUtils.Simulate.click(a, {
+        defaultPrevented: false,
+        button: 1
+      });
+
+      expect(memoryHistory.push).toBeCalledTimes(0);
+    });
+
+    it("does not call history.push on prevented event.", () => {
+      const to = "/the/path?the=query#the-hash";
+
+      renderStrict(
+        <Router history={memoryHistory}>
+          <Link to={to}>link</Link>
+        </Router>,
+        node
+      );
+
+      const a = node.querySelector("a");
+      ReactTestUtils.Simulate.click(a, {
+        defaultPrevented: true,
+        button: 0
+      });
+
+      expect(memoryHistory.push).toBeCalledTimes(0);
+    });
+
+    it("does not call history.push target not specifying 'self'", () => {
+      const to = "/the/path?the=query#the-hash";
+
+      renderStrict(
+        <Router history={memoryHistory}>
+          <Link to={to} target="_blank">
+            link
+          </Link>
+        </Router>,
+        node
+      );
+
+      const a = node.querySelector("a");
+      ReactTestUtils.Simulate.click(a, {
+        defaultPrevented: false,
+        button: 0
+      });
+
+      expect(memoryHistory.push).toBeCalledTimes(0);
+    });
+
+    it("prevents the default event handler if an error occurs", () => {
+      const memoryHistory = createMemoryHistory();
+      memoryHistory.push = jest.fn();
+      const error = new Error();
+      const clickHandler = () => {
+        throw error;
+      };
+      const mockPreventDefault = jest.fn();
+      const to = "/the/path?the=query#the-hash";
+
+      renderStrict(
+        <Router history={memoryHistory}>
+          <Link to={to} onClick={clickHandler}>
+            link
+          </Link>
+        </Router>,
+        node
+      );
+
+      console.error = jest.fn(); // keep console clean. Dunno why the catch doesn't do the job correctly.
+      try {
+        const a = node.querySelector("a");
+        ReactTestUtils.Simulate.click(a, {
+          defaultPrevented: false,
+          preventDefault: mockPreventDefault,
+          button: 1
+        });
+      } catch (e) {
+        expect(e).toBe(error);
+      }
+
+      console.error.mockRestore();
+      expect(clickHandler).toThrow(error);
+      expect(mockPreventDefault).toHaveBeenCalled();
+      expect(memoryHistory.push).toBeCalledTimes(0);
     });
   });
 });

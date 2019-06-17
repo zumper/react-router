@@ -26,6 +26,37 @@ to the matching props `Route` accepts:
 {
   path, // like /users/:id; either a single string or an array of strings
   strict, // optional, defaults to false
-  exact; // optional, defaults to false
+  exact, // optional, defaults to false
 }
+```
+
+## returns
+
+It returns an object when provided pathname does match `path` prop or `null` otherwise.
+
+```
+matchPath("/users/2", {
+      path: "/users/:id",
+      exact: true,
+      strict: true
+    })
+
+//  {
+//    isExact: true
+//    params: {
+//        id: "2"
+//    }
+//    path: "/users/:id"
+//    url: "/users/2"
+//  }
+```
+
+```
+matchPath("/users", {
+      path: "/users/:id",
+      exact: true,
+      strict: true
+    })
+
+//  null
 ```
