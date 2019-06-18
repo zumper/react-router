@@ -93,7 +93,10 @@ if (__DEV__) {
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string)
     ]),
-    regexp: PropTypes.instanceOf(RegExp),
+    regexp: PropTypes.oneOfType([
+      PropTypes.instanceOf(RegExp),
+      PropTypes.arrayOf(PropTypes.instanceOf(RegExp))
+    ]),
     render: PropTypes.func,
     sensitive: PropTypes.bool,
     strict: PropTypes.bool

@@ -8,21 +8,21 @@ matches the route's `path`.
 Consider the following code:
 
 ```jsx
-import { BrowserRouter as Router, Route } from '@zumper/react-router-dom'
+import { BrowserRouter as Router, Route } from "@zumper/react-router-dom";
 
 <Router>
   <div>
-    <Route exact path="/" component={Home}/>
-    <Route path="/news" component={NewsFeed}/>
+    <Route exact path="/" component={Home} />
+    <Route path="/news" component={NewsFeed} />
   </div>
-</Router>
+</Router>;
 ```
 
 If the location of the app is `/` then the UI hierarchy will be something like:
 
 ```html
 <div>
-  <Home/>
+  <Home />
   <!-- react-empty: 2 -->
 </div>
 ```
@@ -32,7 +32,7 @@ And if the location of the app is `/news` then the UI hierarchy will be:
 ```html
 <div>
   <!-- react-empty: 1 -->
-  <NewsFeed/>
+  <NewsFeed />
 </div>
 ```
 
@@ -42,9 +42,9 @@ The "react-empty" comments are just implementation details of React's `null` ren
 
 There are 3 ways to render something with a `<Route>`:
 
-* [`<Route component>`](#component)
-* [`<Route render>`](#render-func)
-* [`<Route children>`](#children-func)
+- [`<Route component>`](#component)
+- [`<Route render>`](#render-func)
+- [`<Route children>`](#children-func)
 
 Each is useful in different circumstances. You should use only one of these props on a given `<Route>`. See their explanations below to understand why you have 3 options. Most of the time you'll use `component`.
 
@@ -52,9 +52,9 @@ Each is useful in different circumstances. You should use only one of these prop
 
 All three [render methods](#route-render-methods) will be passed the same three route props
 
-* [match](./match.md)
-* [location](./location.md)
-* [history](./history.md)
+- [match](./match.md)
+- [location](./location.md)
+- [history](./history.md)
 
 ## component
 
@@ -64,8 +64,9 @@ rendered with [route props](#route-props).
 ```jsx
 <Route path="/user/:username" component={User} />;
 
-function User({ match }) {
-  return <h1>Hello {match.params.username}!</h1>;
+// All route props (match, location and history) are available to User
+function User(props) {
+  return <h1>Hello {props.match.params.username}!</h1>;
 }
 ```
 
@@ -75,17 +76,18 @@ When you use `component` (instead of `render` or `children`, below) the router u
 
 This allows for convenient inline rendering and wrapping without the undesired remounting explained above.
 
-Instead of having a new [React element](https://facebook.github.io/react/docs/rendering-elements.html) created for you using the [`component`](#component) prop, you can pass in a function to be called when the location matches. The `render` prop receives all the same [route props](#route-props) as the `component` render prop.
+Instead of having a new [React element](https://facebook.github.io/react/docs/rendering-elements.html) created for you using the [`component`](#component) prop, you can pass in a function to be called when the location matches. The `render` prop function has access to all the same [route props](#route-props) (match, location and history) as the `component` render prop.
 
 ```jsx
 // convenient inline rendering
 <Route path="/home" render={() => <div>Home</div>}/>
 
 // wrapping/composing
+// You can spread routeProps to make them available to your rendered Component
 const FadingRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
+  <Route {...rest} render={routeProps => (
     <FadeIn>
-      <Component {...props}/>
+      <Component {...routeProps}/>
     </FadeIn>
   )}/>
 )

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Block, InlineBlock } from "jsxstyle";
 import { Link, Route, Redirect, Switch } from "react-router-dom";
@@ -8,37 +8,30 @@ import EnvironmentHeader from "./EnvironmentHeader";
 import Example from "./Example";
 import Guide from "./Guide";
 import API from "./API";
+import HooksTourAd from "./HooksTourAd";
 
-class EnvironmentLarge extends Component {
-  static propTypes = {
-    data: PropTypes.object,
-    match: PropTypes.object
-  };
-
-  componentDidMount() {
-    this.preloadExamples();
-  }
-
-  preloadExamples() {
-    const { data } = this.props;
+function EnvironmentLarge({ data, match }) {
+  useEffect(() => {
     data.examples.forEach(example => {
       // native doesn't have `load`
       if (example.load) example.load(() => {});
       // all have `loadSource`
       if (example.loadSource) example.loadSource(() => {});
     });
-  }
+  }, [data]);
 
-  render() {
-    const { data, match } = this.props;
-    return (
-      <Block>
-        <Nav data={data} environment={match.params.environment} />
-        <Content data={data} match={match} />
-      </Block>
-    );
-  }
+  return (
+    <Fragment>
+      <Nav data={data} environment={match.params.environment} />
+      <Content data={data} match={match} />
+    </Fragment>
+  );
 }
+
+EnvironmentLarge.propTypes = {
+  data: PropTypes.object,
+  match: PropTypes.object
+};
 
 function Title(props) {
   return (
@@ -98,7 +91,9 @@ NavLink.propTypes = {
 function NavLinks({ data, environment }) {
   return (
     <Block lineHeight="1.8" padding="10px">
-      {data.examples && (
+      <HooksTourAd />
+
+      {Array.isArray(data.examples) && data.examples.length > 0 && (
         <Block>
           <Title>Examples</Title>
           <Block paddingLeft="10px">

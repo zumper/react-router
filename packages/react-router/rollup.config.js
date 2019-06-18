@@ -6,17 +6,20 @@ const { sizeSnapshot } = require("rollup-plugin-size-snapshot");
 import { terser } from "rollup-plugin-terser";
 import kebabCase from "lodash.kebabcase";
 
+const path = require("path");
 const pkg = require("./package.json");
 
 const fileName = kebabCase(pkg.name);
 function isBareModuleId(id) {
-  return !id.startsWith(".") && !id.startsWith("/");
+  return (
+    !id.startsWith(".") && !id.includes(path.join(process.cwd(), "modules"))
+  );
 }
 
 const cjs = [
   {
     input: "modules/index.js",
-    output: { file: `cjs/${fileName}.js`, format: "cjs" },
+    output: { file: `cjs/${fileName}.js`, format: "cjs", esModule: false },
     external: isBareModuleId,
     plugins: [
       babel({ exclude: /node_modules/ }),

@@ -112,7 +112,11 @@ module.exports = {
       },
       {
         test: /\.md(\?(.+))?$/,
-        loader: "markdown-loader"
+        loader: "markdown-loader",
+        options: {
+          basename:
+            process.env.NODE_ENV === "production" ? "/react-router" : undefined
+        }
       },
       {
         test: /\.(gif|jpe?g|png|ico)$/,
@@ -132,6 +136,7 @@ module.exports = {
     historyApiFallback: true,
     quiet: false,
     noInfo: false,
+    publicPath: "/",
     stats: {
       assets: true,
       version: false,

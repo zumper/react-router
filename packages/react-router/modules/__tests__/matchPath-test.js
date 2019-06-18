@@ -1,6 +1,14 @@
 import { compile, matchPath } from "@zumper/react-router";
 
 describe("matchPath", () => {
+  describe("without path property on params", () => {
+    it("doesn't throw an exception", () => {
+      expect(() => {
+        matchPath("/milkyway/eridani", { hash: "foo" });
+      }).not.toThrow();
+    });
+  });
+
   describe('with path="/"', () => {
     it('returns correct url at "/"', () => {
       const path = "/";
@@ -128,6 +136,32 @@ describe("matchPath", () => {
       expect(Object.keys(match.params)).toEqual(["string", "number"]);
       expect(match.params["string"]).toBe("ABC");
       expect(match.params["number"]).toBe("123");
+    });
+
+    describe("with an array of paths", () => {
+      const patterns = {
+        string: /[a-z]+/,
+        number: /\d+/
+      };
+      const compiled = compile({
+        path: ["/somewhere/s-:string/n-:number", "/elsewhere/n-:number"],
+        patterns
+      });
+      it("use first compiled path to match", () => {
+        const match = matchPath("/somewhere/s-abc/n-123", compiled);
+        expect(Object.keys(match.params)).toEqual(["string", "number"]);
+        expect(match.params["string"]).toBe("abc");
+        expect(match.params["number"]).toBe("123");
+      });
+      it("use second compiled path to match", () => {
+        const match = matchPath("/elsewhere/n-123", compiled);
+        expect(Object.keys(match.params)).toEqual(["number"]);
+        expect(match.params["number"]).toBe("123");
+      });
+      it("use compiled path, does not match b/c is case-sensitive", () => {
+        const match = matchPath("/somewhere/s-ABC/n-123", compiled);
+        expect(match).toBe(null);
+      });
     });
   });
 });

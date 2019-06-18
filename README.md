@@ -41,6 +41,12 @@ This repository is a monorepo that we manage using [Lerna](https://github.com/le
 
 > **Redux users:** The [`react-router-redux` package](https://github.com/ReactTraining/react-router/tree/5345a820818c8d43ac923558670538a479ac2234/packages/react-router-redux) is now deprecated. See [Redux Integration](https://reacttraining.com/react-router/web/guides/redux-integration) for a better approach.
 
+## Changes
+
+Detailed release notes for a given version can be found [on our releases page](https://github.com/ReactTraining/react-router/releases).
+
+For change notes prior to version 4, please see [the CHANGES.md file](https://github.com/ReactTraining/react-router/blob/8365d4b2e91084265a1da7de911766169fb9e96e/CHANGES.md).
+
 ## About
 
 `react-router` is developed and maintained by [React Training](https://reacttraining.com) and many [amazing contributors](https://github.com/ReactTraining/react-router/graphs/contributors). If you're interested in learning more about what React can do for your company, please [get in touch](mailto:hello@reacttraining.com)!

@@ -165,4 +165,56 @@ describe("compile", () => {
       });
     });
   });
+
+  describe('with path=["/(?:some)?\\where/:variable(?:/ending)?", "/:one/mid/:two?"]', () => {
+    const patterns = {
+      one: /[a-z]+/,
+      two: /\d+/,
+      three: /(\d+)-([a-z]*)-([A-Z]*)/,
+      variable: /[a-z]+/
+    };
+    describe("compiles to `[^/(?:some)?\\where/([a-z]+)(?:/ending/?)?$, ^/([a-z]+)/mid/(\\d+)/?$]`", () => {
+      const compiled = compile({
+        path: ["/(?:some)?\\where/:variable(?:/ending/?)?", "/:one/mid/:two?"],
+        patterns,
+        exact: true,
+        strict: true
+      });
+      it("compiles to `[^/(?:some)?\\where/([a-z]+)(?:/ending/?)?$, ^/([a-z]+)/mid/(\\d+)/?$]`", () => {
+        expect(compiled.regexp.map(regexp => regexp.source)).toEqual([
+          /^\/(?:some)?\where\/([a-z]+)(?:\/ending\/?)?$/.source,
+          /^\/([a-z]+)\/mid\/(\d+)?$/.source
+        ]);
+      });
+      it("matches `/somewhere/ok", () => {
+        expect(compiled.regexp[0].test("/somewhere/ok")).toBe(true);
+      });
+      it("matches `/some_here/ok", () => {
+        expect(compiled.regexp[0].test("/some_here/ok")).toBe(true);
+      });
+      it("matches `/where/ok", () => {
+        expect(compiled.regexp[0].test("/where/ok")).toBe(true);
+      });
+      it("matches `/somewhere/else/ending`", () => {
+        expect(compiled.regexp[0].test("/somewhere/else/ending")).toBe(true);
+      });
+      it("does not match `/some_were/else/altogether`", () => {
+        expect(compiled.regexp[0].test("/some_were/else/altogether")).toBe(
+          false
+        );
+      });
+      it("matches `/abc/mid/123`", () => {
+        expect(compiled.regexp[1].test("/abc/mid/123")).toBe(true);
+      });
+      it("matches `/abc/mid/123/456`", () => {
+        expect(compiled.regexp[1].test("/abc/mid/123/456")).toBe(false);
+      });
+      it("produces keys `[[], [one, two:optional]]`", () => {
+        expect(compiled.keys).toEqual([
+          [{ name: "variable", optional: false }],
+          [{ name: "one", optional: false }, { name: "two", optional: true }]
+        ]);
+      });
+    });
+  });
 });

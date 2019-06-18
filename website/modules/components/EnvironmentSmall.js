@@ -532,7 +532,7 @@ class Nav extends Component {
         overflow="scroll"
         paddingTop="150px"
       >
-        {data.examples && (
+        {Array.isArray(data.examples) && data.examples.length > 0 && (
           <Block>
             <Title>Examples</Title>
             <Block>
