@@ -1,3 +1,4 @@
+import invariant from "tiny-invariant";
 import pathToRegexp from "path-to-regexp";
 
 const cache = {};
@@ -32,14 +33,28 @@ function matchPath(pathname, options = {}) {
 
   const paths = [].concat(path);
 
-  return paths.reduce((matched, path) => {
+  if (options.regexp && paths.length > 1) {
+    invariant(
+      Array.isArray(options.regexp) && options.regexp.length === paths.length,
+      `when path is an array, regexp must be falsy or an array of the same length (path=${paths.join(
+        ", "
+      )})`
+    );
+  }
+
+  return paths.reduce((matched, path, idx) => {
     if (!path) return null;
     if (matched) return matched;
 
     // allow for precompiled routes. we check for the existence of a regexp
     // prop and use the precompiled regexp and keys instead of compiling
     const { regexp, keys } = options.regexp
-      ? options
+      ? Array.isArray(options.regexp)
+        ? {
+            regexp: options.regexp[idx],
+            keys: options.keys[idx]
+          }
+        : options
       : compilePath(path, {
           end: exact,
           strict,
