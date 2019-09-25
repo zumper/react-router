@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "@zumper/react-router-dom";
 
 const PEEPS = [
   { id: 0, name: "Michelle", friends: [1, 2, 3] },

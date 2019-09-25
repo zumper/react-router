@@ -16,7 +16,7 @@ Please note: You need to be using React >= 16.8 in order to use any of these hoo
 The `useHistory` hook gives you access to the [`history`](./history.md) instance that you may use to navigate.
 
 ```jsx
-import { useHistory } from "react-router"
+import { useHistory } from "@zumper/react-router"
 
 function HomeButton() {
   let history = useHistory()
@@ -44,7 +44,11 @@ This could be really useful e.g. in a situation where you would like to trigger 
 ```jsx
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter as Router, Switch, useLocation } from "react-router"
+import {
+  BrowserRouter as Router,
+  Switch,
+  useLocation
+} from "@zumper/react-router"
 
 function usePageViews() {
   let location = useLocation()
@@ -75,7 +79,12 @@ ReactDOM.render(
 ```jsx
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter as Router, Switch, Route, useParams } from "react-router"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams
+} from "@zumper/react-router"
 
 function BlogPost() {
   let { slug } = useParams()

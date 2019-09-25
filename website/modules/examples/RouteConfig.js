@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "@zumper/react-router-dom";
 
 // Some folks find value in a centralized route config.
 // A route config is just data. React is great at mapping

@@ -14,7 +14,7 @@ If there is a support question that you frequently see being asked, please open 
 If your application is hosted on a static file server, you need to use a `<HashRouter>` instead of a `<BrowserRouter>`.
 
 ```js
-import { HashRouter } from "react-router-dom";
+import { HashRouter } from "@zumper/react-router-dom";
 
 ReactDOM.render(
   <HashRouter>
@@ -86,7 +86,7 @@ export default createBrowserHistory();
 
 ```js
 // index.js
-import { Router } from "react-router-dom";
+import { Router } from "@zumper/react-router-dom";
 import history from "./history";
 
 ReactDOM.render(

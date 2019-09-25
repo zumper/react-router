@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StaticRouter as Router, Route } from "react-router-dom";
+import { StaticRouter as Router, Route } from "@zumper/react-router-dom";
 
 // This example renders a route within a StaticRouter and populates its
 // staticContext, which it then prints out. In the real world you would

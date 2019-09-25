@@ -6,7 +6,7 @@ import {
   Route,
   Link,
   Redirect
-} from "react-router-dom";
+} from "@zumper/react-router-dom";
 
 import "./styles.css";
 

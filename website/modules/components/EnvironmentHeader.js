@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route } from "@zumper/react-router-dom";
 import { Block, Row, Inline, Col } from "jsxstyle";
 import PropTypes from "prop-types";
 

@@ -7,7 +7,7 @@ Renders the first child [`<Route>`](Route.md) or [`<Redirect>`](Redirect.md) tha
 `<Switch>` is unique in that it renders a route _exclusively_. In contrast, every `<Route>` that matches the location renders _inclusively_. Consider these routes:
 
 ```jsx
-import { Route } from "react-router"
+import { Route } from "@zumper/react-router"
 
 let routes = (
   <div>
@@ -90,7 +90,7 @@ When you include a `<Redirect>` in a `<Switch>`, it can use any of the `<Route>`
 If a `location` prop is given to the `<Switch>`, it will override the `location` prop on the matching child element.
 
 ```jsx
-import { Redirect, Route, Switch } from "react-router"
+import { Redirect, Route, Switch } from "@zumper/react-router"
 
 let routes = (
   <Switch>

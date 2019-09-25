@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect } from "@zumper/react-router-dom";
 import { Block } from "jsxstyle";
 import PropTypes from "prop-types";
 

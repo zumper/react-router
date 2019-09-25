@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from "@zumper/react-router-dom";
 
 export default function AmbiguousExample() {
   return (

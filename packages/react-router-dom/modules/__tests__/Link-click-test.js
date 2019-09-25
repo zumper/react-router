@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import TestUtils from "react-dom/test-utils";
-import { Router, Link } from "react-router-dom";
+import { Router, Link } from "@zumper/react-router-dom";
 import { createMemoryHistory } from "history";
 
 import renderStrict from "./utils/renderStrict";

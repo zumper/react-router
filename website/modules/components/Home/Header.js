@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@zumper/react-router-dom";
 import { Block, Row, Inline } from "jsxstyle";
 
 import { SMALL_SCREEN, LIGHT_GRAY } from "../../Theme.js";

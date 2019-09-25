@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "@zumper/react-router-dom";
 
 // This example shows how to render two different screens
 // (or the same screen in a different context) at the same URL,

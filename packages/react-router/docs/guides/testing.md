@@ -105,7 +105,7 @@ const App = () => (
 // you can also use a renderer like "@testing-library/react" or "enzyme/mount" here
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from 'react-dom/test-utils';
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter } from "@zumper/react-router-dom";
 
 // app.test.js
 it("navigates home when you click the logo", async => {
@@ -175,7 +175,7 @@ test('clicking filter links updates product query params', () => {
 ```js
 // app.test.js
 import { createMemoryHistory } from "history"
-import { Router } from "react-router"
+import { Router } from "@zumper/react-router"
 
 test("redirects to login page", () => {
   const history = createMemoryHistory()

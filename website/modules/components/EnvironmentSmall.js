@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Switch, Route } from "react-router-dom";
+import { Link, Switch, Route } from "@zumper/react-router-dom";
 import Animated from "animated/lib/targets/react-dom";
 import ChevronLeft from "react-icons/lib/md/chevron-left";
 import PropTypes from "prop-types";

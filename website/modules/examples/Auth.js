@@ -5,7 +5,7 @@ import {
   Link,
   Redirect,
   withRouter
-} from "react-router-dom";
+} from "@zumper/react-router-dom";
 
 ////////////////////////////////////////////////////////////
 // 1. Click the public page

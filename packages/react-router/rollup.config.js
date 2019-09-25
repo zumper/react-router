@@ -4,7 +4,7 @@ const commonjs = require("rollup-plugin-commonjs");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const { sizeSnapshot } = require("rollup-plugin-size-snapshot");
 import { terser } from "rollup-plugin-terser";
-import kebabCase from "lodash.kebabcase";
+import kebabCase from "lodash/kebabCase";
 
 const path = require("path");
 const pkg = require("./package.json");
