@@ -1,26 +1,26 @@
 {
-  "esm/zumper-react-router.js": {
-    "bundled": 26360,
-    "minified": 14668,
-    "gzipped": 4211,
+  "esm/react-router.js": {
+    "bundled": 24968,
+    "minified": 14577,
+    "gzipped": 3854,
     "treeshaked": {
       "rollup": {
-        "code": 2517,
+        "code": 2389,
         "import_statements": 470
       },
       "webpack": {
-        "code": 3884
+        "code": 3758
       }
     }
   },
-  "umd/zumper-react-router.js": {
-    "bundled": 105650,
-    "minified": 37570,
-    "gzipped": 12011
+  "umd/react-router.js": {
+    "bundled": 103139,
+    "minified": 36725,
+    "gzipped": 11678
   },
-  "umd/zumper-react-router.min.js": {
-    "bundled": 65711,
-    "minified": 22907,
-    "gzipped": 8106
+  "umd/react-router.min.js": {
+    "bundled": 62609,
+    "minified": 22123,
+    "gzipped": 7758
   }
 }

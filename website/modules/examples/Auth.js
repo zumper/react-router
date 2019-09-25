@@ -13,7 +13,7 @@ import {
 // 3. Log in
 // 4. Click the back button, note the URL each time
 
-function AuthExample() {
+export default function AuthExample() {
   return (
     <Router>
       <div>
@@ -114,5 +114,3 @@ class Login extends Component {
     );
   }
 }
-
-export default AuthExample;

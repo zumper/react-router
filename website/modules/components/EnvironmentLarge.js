@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 import { Block, InlineBlock } from "jsxstyle";
 import { Link, Route, Redirect, Switch } from "react-router-dom";
 
-import { LIGHT_GRAY, RED } from "../Theme";
-import EnvironmentHeader from "./EnvironmentHeader";
-import Example from "./Example";
-import Guide from "./Guide";
-import API from "./API";
-import HooksTourAd from "./HooksTourAd";
+import { LIGHT_GRAY, RED } from "../Theme.js";
+import EnvironmentHeader from "./EnvironmentHeader.js";
+import Example from "./Example.js";
+import Guide from "./Guide.js";
+import API from "./API.js";
 
-function EnvironmentLarge({ data, match }) {
+export default function EnvironmentLarge({ data, match }) {
   useEffect(() => {
     data.examples.forEach(example => {
       // native doesn't have `load`
@@ -91,8 +90,21 @@ NavLink.propTypes = {
 function NavLinks({ data, environment }) {
   return (
     <Block lineHeight="1.8" padding="10px">
-      <HooksTourAd />
-
+      <Block>
+        <Title>Announcements</Title>
+        <Block paddingLeft="10px">
+          <Block
+            component="a"
+            hoverTextDecoration="underline"
+            color="black"
+            props={{
+              href: "https://reacttraining.com/blog/reach-react-router-future/"
+            }}
+          >
+            The Future of React Router
+          </Block>
+        </Block>
+      </Block>
       {Array.isArray(data.examples) && data.examples.length > 0 && (
         <Block>
           <Title>Examples</Title>
@@ -214,5 +226,3 @@ Content.propTypes = {
   data: PropTypes.object,
   match: PropTypes.object
 };
-
-export default EnvironmentLarge;

@@ -33,4 +33,7 @@ export { default as generatePath } from "./generatePath";
 export { default as matchPath } from "./matchPath";
 export { default as withRouter } from "./withRouter";
 
+import { useHistory, useLocation, useParams, useRouteMatch } from "./hooks.js";
+export { useHistory, useLocation, useParams, useRouteMatch };
+
 export { default as __RouterContext } from "./RouterContext";

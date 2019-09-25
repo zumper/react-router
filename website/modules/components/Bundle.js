@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Bundle({ children, load }) {
+export default function Bundle({ children, load }) {
   const [mod, setMod] = useState();
 
   useEffect(() => {
@@ -11,5 +11,3 @@ function Bundle({ children, load }) {
 
   return children(mod);
 }
-
-export default Bundle;

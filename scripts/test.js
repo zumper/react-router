@@ -9,12 +9,12 @@ const cwd = process.cwd();
 
 [
   "react-router",
-  "react-router-dom",
+  "react-router-dom"
   // "react-router-config",
   // "react-router-native"
 ].forEach(packageName => {
   process.chdir(path.resolve(__dirname, "../packages/" + packageName));
-  exec("npm test");
+  exec("yarn test");
 });
 
 process.chdir(cwd);

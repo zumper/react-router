@@ -16,6 +16,25 @@ describe("A <NavLink>", () => {
     ReactDOM.unmountComponentAtNode(node);
   });
 
+  it("forwards a ref", () => {
+    let refNode;
+    function refCallback(n) {
+      refNode = n;
+    }
+
+    renderStrict(
+      <MemoryRouter>
+        <NavLink to="/" ref={refCallback}>
+          link
+        </NavLink>
+      </MemoryRouter>,
+      node
+    );
+
+    expect(refNode).not.toBe(undefined);
+    expect(refNode.tagName).toEqual("A");
+  });
+
   describe("when active", () => {
     it("applies its default activeClassName", () => {
       renderStrict(
@@ -481,6 +500,25 @@ describe("A <NavLink>", () => {
       renderStrict(
         <MemoryRouter initialEntries={["/pizza"]}>
           <NavLink to="/pasta" location={{ pathname: "/pasta" }}>
+            Pasta!
+          </NavLink>
+        </MemoryRouter>,
+        node
+      );
+
+      const a = node.querySelector("a");
+
+      expect(a.className).toContain("active");
+    });
+
+    it("overrides the current location for isActive", () => {
+      renderStrict(
+        <MemoryRouter initialEntries={["/pizza"]}>
+          <NavLink
+            to="/pasta"
+            isActive={(_, location) => location.pathname === "/pasta"}
+            location={{ pathname: "/pasta" }}
+          >
             Pasta!
           </NavLink>
         </MemoryRouter>,

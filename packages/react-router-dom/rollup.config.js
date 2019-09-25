@@ -19,19 +19,24 @@ function isBareModuleId(id) {
 const cjs = [
   {
     input: "modules/index.js",
-    output: { file: `cjs/${fileName}.js`, format: "cjs", esModule: false },
+    output: {
+      file: `cjs/${fileName}.js`,
+      sourcemap: true,
+      format: "cjs",
+      esModule: false
+    },
     external: isBareModuleId,
     plugins: [
-      babel({ exclude: /node_modules/ }),
+      babel({ exclude: /node_modules/, sourceMaps: true }),
       replace({ "process.env.NODE_ENV": JSON.stringify("development") })
     ]
   },
   {
     input: "modules/index.js",
-    output: { file: `cjs/${fileName}.min.js`, format: "cjs" },
+    output: { file: `cjs/${fileName}.min.js`, sourcemap: true, format: "cjs" },
     external: isBareModuleId,
     plugins: [
-      babel({ exclude: /node_modules/ }),
+      babel({ exclude: /node_modules/, sourceMaps: true }),
       replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
       terser()
     ]
@@ -41,12 +46,13 @@ const cjs = [
 const esm = [
   {
     input: "modules/index.js",
-    output: { file: `esm/${fileName}.js`, format: "esm" },
+    output: { file: `esm/${fileName}.js`, sourcemap: true, format: "esm" },
     external: isBareModuleId,
     plugins: [
       babel({
         exclude: /node_modules/,
         runtimeHelpers: true,
+        sourceMaps: true,
         plugins: [["@babel/transform-runtime", { useESModules: true }]]
       }),
       sizeSnapshot()
@@ -61,6 +67,9 @@ const umd = [
     input: "modules/index.js",
     output: {
       file: `umd/${fileName}.js`,
+      sourcemap: true,
+      sourcemapPathTransform: relativePath =>
+        relativePath.replace(/^.*?\/node_modules/, "../../node_modules"),
       format: "umd",
       name: "ReactRouterDOM",
       globals
@@ -70,15 +79,14 @@ const umd = [
       babel({
         exclude: /node_modules/,
         runtimeHelpers: true,
+        sourceMaps: true,
         plugins: [["@babel/transform-runtime", { useESModules: true }]]
       }),
       nodeResolve(),
       commonjs({
         include: /node_modules/,
         namedExports: {
-          "../react-router/node_modules/react-is/index.js": [
-            "isValidElementType"
-          ]
+          "../../node_modules/react-is/index.js": ["isValidElementType"]
         }
       }),
       replace({ "process.env.NODE_ENV": JSON.stringify("development") }),
@@ -89,6 +97,9 @@ const umd = [
     input: "modules/index.js",
     output: {
       file: `umd/${fileName}.min.js`,
+      sourcemap: true,
+      sourcemapPathTransform: relativePath =>
+        relativePath.replace(/^.*?\/node_modules/, "../../node_modules"),
       format: "umd",
       name: "ReactRouterDOM",
       globals
@@ -98,15 +109,14 @@ const umd = [
       babel({
         exclude: /node_modules/,
         runtimeHelpers: true,
+        sourceMaps: true,
         plugins: [["@babel/transform-runtime", { useESModules: true }]]
       }),
       nodeResolve(),
       commonjs({
         include: /node_modules/,
         namedExports: {
-          "../react-router/node_modules/react-is/index.js": [
-            "isValidElementType"
-          ]
+          "../../node_modules/react-is/index.js": ["isValidElementType"]
         }
       }),
       replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
