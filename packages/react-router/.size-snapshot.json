@@ -24,7 +24,7 @@
     "gzipped": 7758
   },
   "esm/zumper-react-router.js": {
-    "bundled": 27827,
+    "bundled": 27821,
     "minified": 15959,
     "gzipped": 4393,
     "treeshaked": {
@@ -38,12 +38,12 @@
     }
   },
   "umd/zumper-react-router.js": {
-    "bundled": 105587,
+    "bundled": 105581,
     "minified": 37589,
     "gzipped": 12051
   },
   "umd/zumper-react-router.min.js": {
-    "bundled": 64579,
+    "bundled": 64573,
     "minified": 22655,
     "gzipped": 7999
   }
