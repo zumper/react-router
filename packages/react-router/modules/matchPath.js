@@ -45,7 +45,7 @@ function matchPath(pathname, options = {}) {
   }
 
   return paths.reduce((matched, path, idx) => {
-    if (!path) return null;
+    if (!path && path !== "") return null;
     if (matched) return matched;
 
     // allow for precompiled routes. we check for the existence of a regexp
