@@ -1,6 +1,6 @@
 {
   "name": "@zumper/react-router-dom",
-  "version": "5.1.0-zumper.7",
+  "version": "5.1.0-zumper.8",
   "description": "DOM bindings for React Router",
   "repository": "zumper/react-router",
   "license": "MIT",
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
-    "@zumper/react-router": "5.1.0-zumper.7",
+    "@zumper/react-router": "^5.1.0-zumper.8",
     "history": "^4.10.1",
     "loose-envify": "^1.4.0",
     "prop-types": "^15.7.2",
