@@ -24,27 +24,27 @@
     "gzipped": 7758
   },
   "esm/zumper-react-router.js": {
-    "bundled": 27806,
-    "minified": 15951,
-    "gzipped": 4390,
+    "bundled": 27827,
+    "minified": 15959,
+    "gzipped": 4393,
     "treeshaked": {
       "rollup": {
-        "code": 2556,
+        "code": 2564,
         "import_statements": 470
       },
       "webpack": {
-        "code": 3927
+        "code": 3935
       }
     }
   },
   "umd/zumper-react-router.js": {
-    "bundled": 105566,
-    "minified": 37581,
-    "gzipped": 12047
+    "bundled": 105587,
+    "minified": 37589,
+    "gzipped": 12051
   },
   "umd/zumper-react-router.min.js": {
-    "bundled": 64558,
-    "minified": 22647,
-    "gzipped": 7995
+    "bundled": 64579,
+    "minified": 22655,
+    "gzipped": 7999
   }
 }

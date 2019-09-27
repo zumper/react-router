@@ -3,7 +3,7 @@ const replace = require("rollup-plugin-replace");
 const commonjs = require("rollup-plugin-commonjs");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const { sizeSnapshot } = require("rollup-plugin-size-snapshot");
-const { uglify } = require("rollup-plugin-uglify");
+const { terser } = require("rollup-plugin-terser");
 const path = require("path");
 const pkg = require("./package.json");
 
@@ -35,7 +35,7 @@ const cjs = [
     plugins: [
       babel({ exclude: /node_modules/, sourceMaps: true }),
       replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
-      uglify()
+      terser()
     ]
   }
 ];
@@ -108,7 +108,7 @@ const umd = [
       commonjs({ include: /node_modules/ }),
       replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
       sizeSnapshot(),
-      uglify()
+      terser()
     ]
   }
 ];

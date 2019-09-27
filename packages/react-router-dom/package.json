@@ -41,7 +41,7 @@
     "lint": "eslint modules",
     "prepublishOnly": "yarn build",
     "test": "jest",
-    "zumper": "yarn build && npm pack"
+    "zumper": "yarn build && yarn pack"
   },
   "peerDependencies": {
     "react": ">=15"

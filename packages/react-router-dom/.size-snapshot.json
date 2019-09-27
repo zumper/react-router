@@ -38,13 +38,13 @@
     }
   },
   "umd/zumper-react-router-dom.js": {
-    "bundled": 134335,
-    "minified": 48201,
-    "gzipped": 14739
+    "bundled": 134356,
+    "minified": 48209,
+    "gzipped": 14743
   },
   "umd/zumper-react-router-dom.min.js": {
-    "bundled": 89608,
-    "minified": 30699,
-    "gzipped": 10212
+    "bundled": 89629,
+    "minified": 30707,
+    "gzipped": 10216
   }
 }
