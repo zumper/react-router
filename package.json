@@ -40,7 +40,7 @@
     "rollup-plugin-terser": "^5.1.2"
   },
   "workspaces": {
-    "packages": ["packages/*"],
+    "packages": ["packages/{react-router,react-router-dom}"],
     "nohoist": ["**/react-native", "**/react-native/**"]
   }
 }
