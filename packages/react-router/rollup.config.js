@@ -4,7 +4,7 @@ const replace = require("rollup-plugin-replace");
 const commonjs = require("rollup-plugin-commonjs");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const kebabCase = require("lodash/kebabCase");
-const { terser } = require("rollup-plugin-uglify");
+const { terser } = require("rollup-plugin-terser");
 
 const pkg = require("./package.json");
 
