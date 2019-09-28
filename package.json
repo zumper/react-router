@@ -36,11 +36,15 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-size-snapshot": "^0.10.0",
     "rollup-plugin-terser": "^5.1.2"
   },
   "workspaces": {
-    "packages": ["packages/{react-router,react-router-dom}"],
-    "nohoist": ["**/react-native", "**/react-native/**"]
+    "packages": [
+      "packages/{react-router,react-router-dom}"
+    ],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**"
+    ]
   }
 }

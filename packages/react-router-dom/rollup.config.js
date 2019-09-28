@@ -1,11 +1,11 @@
+const path = require("path");
 const babel = require("rollup-plugin-babel");
 const replace = require("rollup-plugin-replace");
 const commonjs = require("rollup-plugin-commonjs");
 const nodeResolve = require("rollup-plugin-node-resolve");
-const { sizeSnapshot } = require("rollup-plugin-size-snapshot");
-import { terser } from "rollup-plugin-terser";
-import kebabCase from "lodash/kebabCase";
-const path = require("path");
+const kebabCase = require("lodash/kebabCase");
+const { terser } = require("rollup-plugin-uglify");
+
 const pkg = require("./package.json");
 
 const fileName = kebabCase(pkg.name);
@@ -54,8 +54,7 @@ const esm = [
         runtimeHelpers: true,
         sourceMaps: true,
         plugins: [["@babel/transform-runtime", { useESModules: true }]]
-      }),
-      sizeSnapshot()
+      })
     ]
   }
 ];
@@ -89,8 +88,9 @@ const umd = [
           "../../node_modules/react-is/index.js": ["isValidElementType"]
         }
       }),
-      replace({ "process.env.NODE_ENV": JSON.stringify("development") }),
-      sizeSnapshot()
+      replace({
+        "process.env.NODE_ENV": JSON.stringify("development")
+      })
     ]
   },
   {
@@ -119,8 +119,9 @@ const umd = [
           "../../node_modules/react-is/index.js": ["isValidElementType"]
         }
       }),
-      replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
-      sizeSnapshot(),
+      replace({
+        "process.env.NODE_ENV": JSON.stringify("production")
+      }),
       terser()
     ]
   }

@@ -1,6 +1,6 @@
 {
   "packages": ["packages/{react-router,react-router-dom}"],
-  "version": "5.1.0-zumper.8",
+  "version": "5.1.1-zumper.8",
   "npmClient": "yarn",
   "useWorkspaces": true
 }
