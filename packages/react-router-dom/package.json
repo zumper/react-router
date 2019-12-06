@@ -42,11 +42,14 @@
     "test": "jest",
     "zumper": "yarn build && yarn pack"
   },
+  "types": "index.d.ts",
   "peerDependencies": {
+    "@types/react": "*",
     "react": ">=15"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
+    "@types/history": "*",
     "@zumper/react-router": "^5.1.1-zumper.9",
     "history": "^4.10.1",
     "loose-envify": "^1.4.0",
