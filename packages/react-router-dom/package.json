@@ -23,6 +23,7 @@
     "cjs",
     "es",
     "esm",
+    "index.d.ts",
     "index.js",
     "compile.js",
     "generatePath.js",
