@@ -45,12 +45,12 @@
   },
   "types": "index.d.ts",
   "peerDependencies": {
+    "@types/history": "*",
     "@types/react": "*",
     "react": ">=15"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
-    "@types/history": "*",
     "@zumper/react-router": "^5.1.2-zumper.11",
     "history": "^4.10.1",
     "loose-envify": "^1.4.0",

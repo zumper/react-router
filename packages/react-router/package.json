@@ -41,12 +41,12 @@
   },
   "types": "index.d.ts",
   "peerDependencies": {
+    "@types/history": "*",
     "@types/react": "*",
     "react": ">=15"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
-    "@types/history": "*",
     "history": "^4.10.1",
     "hoist-non-react-statics": "^3.3.0",
     "loose-envify": "^1.4.0",
