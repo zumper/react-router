@@ -4,6 +4,10 @@
   "description": "DOM bindings for React Router",
   "repository": "zumper/react-router",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://zumper.jfrog.io/artifactory/api/npm/npm/"
+  },
   "authors": [
     "Michael Jackson",
     "Ryan Florence"

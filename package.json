@@ -8,6 +8,9 @@
     "test": "node ./scripts/test.js",
     "zumper": "lerna run --no-bail zumper"
   },
+  "publishConfig": {
+    "registry": "https://zumper.jfrog.io/artifactory/api/npm/npm/"
+  },
   "dependencies": {
     "@babel/core": "^7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",

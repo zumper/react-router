@@ -4,6 +4,10 @@
   "description": "Static route config matching for React Router",
   "repository": "ReactTraining/react-router",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://zumper.jfrog.io/artifactory/api/npm/npm/"
+  },
   "authors": [
     "Ryan Florence"
   ],
