@@ -1,12 +1,11 @@
 {
   "name": "@zumper/react-router",
-  "version": "5.1.2-zumper.11",
+  "version": "5.1.2-zumper.12",
   "description": "Declarative routing for React",
   "repository": "zumper/react-router",
   "license": "MIT",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://zumper.jfrog.io/artifactory/api/npm/npm/"
+    "access": "public"
   },
   "authors": [
     "Michael Jackson",
@@ -73,8 +72,5 @@
     "routing",
     "history",
     "link"
-  ],
-  "publishConfig": {
-    "access": "public"
-  }
+  ]
 }
