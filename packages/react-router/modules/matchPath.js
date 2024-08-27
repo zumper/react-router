@@ -44,24 +44,17 @@ function matchPath(pathname, options = {}) {
     );
   }
 
-  return paths.reduce((matched, path, idx) => {
+  return paths.reduce((matched, path) => {
     if (!path && path !== "") return null;
     if (matched) return matched;
 
     // allow for precompiled routes. we check for the existence of a regexp
     // prop and use the precompiled regexp and keys instead of compiling
-    const { regexp, keys } = options.regexp
-      ? Array.isArray(options.regexp)
-        ? {
-            regexp: options.regexp[idx],
-            keys: options.keys[idx]
-          }
-        : options
-      : compilePath(path, {
-          end: exact,
-          strict,
-          sensitive
-        });
+    const { regexp, keys } = compilePath(path, {
+      end: exact,
+      strict,
+      sensitive
+    });
     const match = regexp.exec(pathname);
 
     if (!match) return null;

@@ -1,10 +1,11 @@
 {
   "name": "@zumper/react-router",
-  "version": "5.1.2-zumper.12",
+  "version": "5.1.2-matt.0",
   "description": "Declarative routing for React",
   "repository": "zumper/react-router",
   "license": "MIT",
   "publishConfig": {
+    "registry": "https://zumper-616113654770.d.codeartifact.us-east-1.amazonaws.com/npm/npm/",
     "access": "public"
   },
   "authors": [

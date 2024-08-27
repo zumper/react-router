@@ -1,10 +1,11 @@
 {
   "name": "@zumper/react-router-dom",
-  "version": "5.1.2-zumper.12",
+  "version": "5.1.2-matt.0",
   "description": "DOM bindings for React Router",
   "repository": "zumper/react-router",
   "license": "MIT",
   "publishConfig": {
+    "registry": "https://zumper-616113654770.d.codeartifact.us-east-1.amazonaws.com/npm/npm/",
     "access": "public"
   },
   "authors": [
@@ -54,7 +55,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
-    "@zumper/react-router": "^5.1.2-zumper.12",
+    "@zumper/react-router": "^5.1.2-matt.0",
     "history": "^4.10.1",
     "loose-envify": "^1.4.0",
     "prop-types": "^15.7.2",
