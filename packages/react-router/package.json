@@ -1,11 +1,12 @@
 {
   "name": "@zumper/react-router",
-  "version": "5.1.2-zumper.12",
+  "version": "5.1.2-matt.11",
   "description": "Declarative routing for React",
   "repository": "zumper/react-router",
   "license": "MIT",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://zumper-616113654770.d.codeartifact.us-east-1.amazonaws.com/npm/npm/"
   },
   "authors": [
     "Michael Jackson",
@@ -44,21 +45,14 @@
   },
   "types": "index.d.ts",
   "peerDependencies": {
-    "@types/history": "*",
+    "@types/history": "<5",
     "@types/react": "*",
-    "react": ">=15"
+    "react": ">=15",
+    "react-router": "5.1.2"
   },
-  "dependencies": {
-    "@babel/runtime": "^7.6.2",
-    "history": "^4.10.1",
-    "hoist-non-react-statics": "^3.3.0",
-    "loose-envify": "^1.4.0",
-    "mini-create-react-context": "^0.3.2",
-    "path-to-regexp": "^1.7.0",
-    "prop-types": "^15.7.2",
-    "react-is": "^16.9.0",
-    "tiny-invariant": "^1.0.6",
-    "tiny-warning": "^1.0.3"
+  "dependencies": {},
+  "devDependencies": {
+    "react-router": "5.1.2"
   },
   "browserify": {
     "transform": [
