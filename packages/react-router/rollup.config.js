@@ -17,7 +17,7 @@ function isBareModuleId(id) {
 
 const cjs = [
   {
-    input: "modules/index.js",
+    input: "index.js",
     output: {
       file: `cjs/${fileName}.js`,
       sourcemap: true,
@@ -34,7 +34,7 @@ const cjs = [
     ]
   },
   {
-    input: "modules/index.js",
+    input: "index.js",
     output: { file: `cjs/${fileName}.min.js`, sourcemap: true, format: "cjs" },
     external: isBareModuleId,
     plugins: [

@@ -9,7 +9,7 @@
     "zumper": "lerna run --no-bail zumper"
   },
   "publishConfig": {
-    "registry": "https://zumper.jfrog.io/artifactory/api/npm/npm/"
+    "registry": "https://zumper-616113654770.d.codeartifact.us-east-1.amazonaws.com/npm/npm/"
   },
   "dependencies": {
     "@babel/core": "^7.6.2",
