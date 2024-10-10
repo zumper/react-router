@@ -1,6 +1,6 @@
 {
   "name": "@zumper/react-router-dom",
-  "version": "5.1.2-matt.10",
+  "version": "5.1.2-zumper.13",
   "description": "DOM bindings for React Router",
   "repository": "zumper/react-router",
   "license": "MIT",
@@ -55,7 +55,7 @@
     "react-router-dom": "5.1.2"
   },
   "dependencies": {
-    "@zumper/react-router": "^5.1.2-matt.11"
+    "@zumper/react-router": "^5.1.2-zumper.13"
   },
   "devDependencies": {
     "react-router-dom": "5.1.2"
